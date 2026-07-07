@@ -3,9 +3,11 @@ import type { UserProgress } from "../types";
 import { defaultJudge0Settings } from "./judge0";
 
 const storageKey = "cpp-akademia-progress-v1";
+const codeTemplateVersion = 2;
 
 export function createEmptyProgress(): UserProgress {
   return {
+    codeTemplateVersion,
     learnerName: "Uczen",
     selectedExerciseId: firstExerciseId,
     codeByExercise: {},
@@ -24,15 +26,17 @@ export function loadProgress(): UserProgress {
     }
 
     const parsed = JSON.parse(raw) as Partial<UserProgress>;
+    const shouldResetSavedCode = parsed.codeTemplateVersion !== codeTemplateVersion;
 
     return {
       ...createEmptyProgress(),
       ...parsed,
+      codeTemplateVersion,
       settings: {
         ...defaultJudge0Settings,
         ...parsed.settings,
       },
-      codeByExercise: parsed.codeByExercise ?? {},
+      codeByExercise: shouldResetSavedCode ? {} : (parsed.codeByExercise ?? {}),
       customInputByExercise: parsed.customInputByExercise ?? {},
       exercises: parsed.exercises ?? {},
     };

@@ -57,6 +57,15 @@ export const stages: Stage[] = [
   },
 ];
 
+const baseStarterCode = `#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+
+    return 0;
+}
+`;
+
 export const exercises: Exercise[] = [
   {
     id: "hello-name",
@@ -72,17 +81,7 @@ export const exercises: Exercise[] = [
     task: "Program ma wczytac jedno slowo: imie. Wypisz dokladnie: Witaj <imie>.",
     inputFormat: "Jedno slowo bez spacji.",
     outputFormat: "Linia w formacie: Witaj Ola",
-    starterCode: `#include <iostream>
-#include <string>
-using namespace std;
-
-int main() {
-    string name;
-    cin >> name;
-
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Do wypisywania tekstu uzyj cout.",
       "Mozesz laczyc tekst i zmienna operatorem <<.",
@@ -108,16 +107,7 @@ int main() {
     task: "Na wejsciu sa dwie liczby calkowite a i b. Wypisz jedna liczbe: a + b.",
     inputFormat: "Dwie liczby calkowite oddzielone spacja.",
     outputFormat: "Jedna liczba calkowita.",
-    starterCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    int a, b;
-    cin >> a >> b;
-
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Po wczytaniu masz dwie zmienne: a oraz b.",
       "Sume obliczysz operatorem +.",
@@ -143,19 +133,7 @@ int main() {
     task: "Wczytaj temperature w stopniach Celsjusza i wypisz temperature w Fahrenheitach wedlug wzoru F = C * 9 / 5 + 32. Wynik wypisz z jedna cyfra po przecinku.",
     inputFormat: "Jedna liczba rzeczywista.",
     outputFormat: "Jedna liczba z jedna cyfra po przecinku.",
-    starterCode: `#include <iostream>
-#include <iomanip>
-using namespace std;
-
-int main() {
-    double celsius;
-    cin >> celsius;
-
-    double fahrenheit = 0.0;
-    cout << fixed << setprecision(1) << fahrenheit << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Do ustawienia liczby miejsc po przecinku uzyj fixed oraz setprecision(1).",
       "Pamietaj, aby uzyc double, bo wynik moze miec czesc ulamkowa.",
@@ -181,18 +159,7 @@ int main() {
     task: "Wczytaj dlugosci bokow a i b. Wypisz pole prostokata, czyli a * b.",
     inputFormat: "Dwie dodatnie liczby calkowite.",
     outputFormat: "Jedna liczba calkowita.",
-    starterCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    int a, b;
-    cin >> a >> b;
-
-    int area = 0;
-    cout << area << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Pole prostokata to iloczyn bokow.",
       "Zmienna area powinna przechowac a * b.",
@@ -218,19 +185,7 @@ int main() {
     task: "Wczytaj trzy liczby rzeczywiste. Wypisz ich srednia z dokladnoscia do dwoch miejsc po przecinku.",
     inputFormat: "Trzy liczby rzeczywiste.",
     outputFormat: "Jedna liczba z dwoma miejscami po przecinku.",
-    starterCode: `#include <iostream>
-#include <iomanip>
-using namespace std;
-
-int main() {
-    double a, b, c;
-    cin >> a >> b >> c;
-
-    double average = 0.0;
-    cout << fixed << setprecision(2) << average << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Dodaj wszystkie trzy liczby.",
       "Podziel sume przez 3.0.",
@@ -256,20 +211,7 @@ int main() {
     task: "Wczytaj liczbe sekund s. Wypisz trzy liczby: godziny, minuty i sekundy pozostale po przeliczeniu.",
     inputFormat: "Jedna nieujemna liczba calkowita.",
     outputFormat: "Trzy liczby: h m s.",
-    starterCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    int totalSeconds;
-    cin >> totalSeconds;
-
-    int hours = 0;
-    int minutes = 0;
-    int seconds = 0;
-    cout << hours << " " << minutes << " " << seconds << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Godziny to totalSeconds / 3600.",
       "Po odjeciu godzin zostaja sekundy modulo 3600.",
@@ -295,17 +237,7 @@ int main() {
     task: "Wczytaj dwie liczby a i b. Wypisz je w odwrotnej kolejnosci: najpierw b, potem a.",
     inputFormat: "Dwie liczby calkowite.",
     outputFormat: "Dwie liczby oddzielone spacja.",
-    starterCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    int a, b;
-    cin >> a >> b;
-
-    cout << a << " " << b << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Mozesz po prostu wypisac b, a potem a.",
       "Jesli chcesz faktycznie zamienic wartosci, uzyj trzeciej zmiennej.",
@@ -331,19 +263,7 @@ int main() {
     task: "Wczytaj liczbe calkowita n. Wypisz jej ostatnia cyfre jako liczbe nieujemna.",
     inputFormat: "Jedna liczba calkowita.",
     outputFormat: "Jedna cyfra od 0 do 9.",
-    starterCode: `#include <cstdlib>
-#include <iostream>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-
-    int digit = 0;
-    cout << digit << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Dla dodatniego n ostatnia cyfra to n % 10.",
       "Dla ujemnego n uzyj abs(n) albo pomnoz wynik przez -1.",
@@ -369,20 +289,7 @@ int main() {
     task: "Wczytaj promien r. Przyjmij pi = 3.14159 i wypisz pole kola z trzema miejscami po przecinku.",
     inputFormat: "Jedna liczba rzeczywista.",
     outputFormat: "Jedna liczba z trzema miejscami po przecinku.",
-    starterCode: `#include <iostream>
-#include <iomanip>
-using namespace std;
-
-int main() {
-    const double pi = 3.14159;
-    double r;
-    cin >> r;
-
-    double area = 0.0;
-    cout << fixed << setprecision(3) << area << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Pole kola to pi * r * r.",
       "Uzyj zmiennej double.",
@@ -408,20 +315,7 @@ int main() {
     task: "Wczytaj kwote rachunku oraz liczbe osob. Wypisz, ile placi jedna osoba, z dwoma miejscami po przecinku.",
     inputFormat: "Liczba rzeczywista total oraz liczba calkowita people.",
     outputFormat: "Jedna liczba z dwoma miejscami po przecinku.",
-    starterCode: `#include <iostream>
-#include <iomanip>
-using namespace std;
-
-int main() {
-    double total;
-    int people;
-    cin >> total >> people;
-
-    double perPerson = 0.0;
-    cout << fixed << setprecision(2) << perPerson << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Podziel total przez people.",
       "Aby uniknac dzielenia calkowitego, wynik trzymaj w double.",
@@ -447,16 +341,7 @@ int main() {
     task: "Wczytaj liczbe calkowita n. Jesli jest parzysta, wypisz PARZYSTA, w przeciwnym razie wypisz NIEPARZYSTA.",
     inputFormat: "Jedna liczba calkowita.",
     outputFormat: "PARZYSTA albo NIEPARZYSTA.",
-    starterCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Operator % zwraca reszte z dzielenia.",
       "Liczba jest parzysta, gdy n % 2 == 0.",
@@ -482,18 +367,7 @@ int main() {
     task: "Wczytaj trzy liczby calkowite. Wypisz najwieksza z nich.",
     inputFormat: "Trzy liczby calkowite.",
     outputFormat: "Jedna liczba calkowita.",
-    starterCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    int a, b, c;
-    cin >> a >> b >> c;
-
-    int best = a;
-    cout << best << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Zacznij od zalozenia, ze najwieksza jest pierwsza liczba.",
       "Jesli b > best, przypisz best = b.",
@@ -519,19 +393,7 @@ int main() {
     task: "Wczytaj n. Dla liczb od 1 do n wypisz w osobnych liniach: FizzBuzz dla podzielnych przez 3 i 5, Fizz dla podzielnych przez 3, Buzz dla podzielnych przez 5, a w pozostalych przypadkach sama liczbe.",
     inputFormat: "Jedna liczba calkowita n.",
     outputFormat: "n linii.",
-    starterCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-
-    for (int i = 1; i <= n; i++) {
-    }
-
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Najpierw sprawdz przypadek podzielnosci przez 15 albo jednoczesnie przez 3 i 5.",
       "Kolejnosc ma znaczenie: liczba 15 nie powinna zatrzymac sie na samym Fizz.",
@@ -557,16 +419,7 @@ int main() {
     task: "Wczytaj liczbe calkowita n. Wypisz DODATNIA, UJEMNA albo ZERO.",
     inputFormat: "Jedna liczba calkowita.",
     outputFormat: "Jedno z trzech slow.",
-    starterCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Najpierw mozesz sprawdzic n > 0.",
       "Potem n < 0.",
@@ -592,18 +445,7 @@ int main() {
     task: "Wczytaj rok. Wypisz TAK, jesli rok jest przestepny. Rok jest przestepny, gdy dzieli sie przez 400 albo dzieli sie przez 4 i nie dzieli przez 100.",
     inputFormat: "Jedna liczba calkowita.",
     outputFormat: "TAK albo NIE.",
-    starterCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    int year;
-    cin >> year;
-
-    bool leap = false;
-    cout << (leap ? "TAK" : "NIE") << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Warunek dzielenia przez 400 jest wystarczajacy.",
       "Dla pozostalych lat sprawdz podzielnosc przez 4 i brak podzielnosci przez 100.",
@@ -629,18 +471,7 @@ int main() {
     task: "Wczytaj liczbe punktow. Wypisz A dla 90 lub wiecej, B dla 75-89, C dla 50-74 oraz D dla mniej niz 50.",
     inputFormat: "Jedna liczba calkowita.",
     outputFormat: "Jeden znak.",
-    starterCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    int points;
-    cin >> points;
-
-    char result = 'D';
-    cout << result << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Zacznij od points >= 90.",
       "Potem sprawdz points >= 75.",
@@ -666,21 +497,7 @@ int main() {
     task: "Wczytaj n. Wypisz sume liczb od 1 do n wlacznie.",
     inputFormat: "Jedna dodatnia liczba calkowita.",
     outputFormat: "Jedna liczba.",
-    starterCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-
-    long long sum = 0;
-    for (int i = 1; i <= n; i++) {
-    }
-
-    cout << sum << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "W kazdym obrocie petli dodaj i do sum.",
       "Dla wiekszych n uzyj long long.",
@@ -706,21 +523,7 @@ int main() {
     task: "Wczytaj dodatnia liczbe n. Wypisz liczbe jej dodatnich dzielnikow.",
     inputFormat: "Jedna dodatnia liczba calkowita.",
     outputFormat: "Jedna liczba calkowita.",
-    starterCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-
-    int count = 0;
-    for (int i = 1; i <= n; i++) {
-    }
-
-    cout << count << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "i jest dzielnikiem, gdy n % i == 0.",
       "Za kazdy dzielnik zwieksz count.",
@@ -746,21 +549,7 @@ int main() {
     task: "Wczytaj n z zakresu 0-12. Wypisz n!, czyli iloczyn liczb od 1 do n.",
     inputFormat: "Jedna liczba calkowita.",
     outputFormat: "Jedna liczba calkowita.",
-    starterCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-
-    long long result = 1;
-    for (int i = 1; i <= n; i++) {
-    }
-
-    cout << result << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Dla n = 0 wynik to 1.",
       "W petli mnoz result przez i.",
@@ -786,21 +575,7 @@ int main() {
     task: "Wczytaj n. Wypisz tabliczke mnozenia n x n. W kazdym wierszu wypisz n liczb oddzielonych spacjami.",
     inputFormat: "Jedna dodatnia liczba calkowita n.",
     outputFormat: "n wierszy po n liczb.",
-    starterCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-
-    for (int row = 1; row <= n; row++) {
-        for (int col = 1; col <= n; col++) {
-        }
-    }
-
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Element w wierszu row i kolumnie col to row * col.",
       "Po kazdym wierszu wypisz endl.",
@@ -826,24 +601,7 @@ int main() {
     task: "Wczytaj n, a potem n liczb calkowitych. Wypisz sume wszystkich liczb.",
     inputFormat: "n, potem n liczb.",
     outputFormat: "Jedna liczba calkowita.",
-    starterCode: `#include <iostream>
-#include <vector>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-    vector<int> numbers(n);
-
-    for (int i = 0; i < n; i++) {
-        cin >> numbers[i];
-    }
-
-    long long sum = 0;
-    cout << sum << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Akumulator to zmienna, do ktorej dodajesz kolejne wartosci.",
       "Przejdz po wektorze petla for od 0 do n - 1.",
@@ -869,20 +627,7 @@ int main() {
     task: "Napisz funkcje grade(points), ktora zwraca znak oceny: A dla 90 lub wiecej, B dla 75-89, C dla 50-74 oraz D dla mniej niz 50. Wczytaj punkty i wypisz ocene.",
     inputFormat: "Jedna liczba calkowita z zakresu 0-100.",
     outputFormat: "Jeden znak: A, B, C albo D.",
-    starterCode: `#include <iostream>
-using namespace std;
-
-char grade(int points) {
-    return 'D';
-}
-
-int main() {
-    int points;
-    cin >> points;
-    cout << grade(points) << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Funkcja moze miec kilka instrukcji return.",
       "Zacznij od najwyzszego progu, czyli points >= 90.",
@@ -908,22 +653,7 @@ int main() {
     task: "Wczytaj n i n liczb. Wypisz liczby w odwrotnej kolejnosc, oddzielone spacjami.",
     inputFormat: "n, potem n liczb.",
     outputFormat: "Liczby od konca, oddzielone spacjami.",
-    starterCode: `#include <iostream>
-#include <vector>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-    vector<int> values(n);
-
-    for (int i = 0; i < n; i++) {
-        cin >> values[i];
-    }
-
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Ostatni indeks w wektorze o rozmiarze n to n - 1.",
       "Petla moze isc od n - 1 do 0.",
@@ -949,25 +679,7 @@ int main() {
     task: "Wczytaj n i n liczb. Wypisz minimum i maksimum oddzielone spacja.",
     inputFormat: "n, potem n liczb.",
     outputFormat: "Dwie liczby: min max.",
-    starterCode: `#include <iostream>
-#include <vector>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-    vector<int> values(n);
-
-    for (int i = 0; i < n; i++) {
-        cin >> values[i];
-    }
-
-    int minimum = values[0];
-    int maximum = values[0];
-    cout << minimum << " " << maximum << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Przejdz po wszystkich elementach.",
       "Jesli values[i] < minimum, zaktualizuj minimum.",
@@ -993,24 +705,7 @@ int main() {
     task: "Wczytaj n i n liczb. Wypisz, ile z nich jest wiekszych od sredniej arytmetycznej wszystkich liczb.",
     inputFormat: "n, potem n liczb calkowitych.",
     outputFormat: "Jedna liczba calkowita.",
-    starterCode: `#include <iostream>
-#include <vector>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-    vector<int> values(n);
-
-    for (int i = 0; i < n; i++) {
-        cin >> values[i];
-    }
-
-    int count = 0;
-    cout << count << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Najpierw policz sume.",
       "Srednia jako double to sum / (double)n.",
@@ -1036,27 +731,7 @@ int main() {
     task: "Wczytaj n, n liczb oraz x. Wypisz indeks pierwszego wystapienia x albo -1, jesli x nie ma w wektorze.",
     inputFormat: "n, n liczb, potem x.",
     outputFormat: "Indeks liczony od 0 albo -1.",
-    starterCode: `#include <iostream>
-#include <vector>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-    vector<int> values(n);
-
-    for (int i = 0; i < n; i++) {
-        cin >> values[i];
-    }
-
-    int x;
-    cin >> x;
-
-    int index = -1;
-    cout << index << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Przejdz po indeksach od 0 do n - 1.",
       "Gdy znajdziesz values[i] == x, ustaw index i przerwij petle.",
@@ -1082,24 +757,7 @@ int main() {
     task: "Wczytaj n i n liczb calkowitych. Wypisz, ile roznych wartosci wystapilo.",
     inputFormat: "n, potem n liczb.",
     outputFormat: "Jedna liczba calkowita.",
-    starterCode: `#include <iostream>
-#include <set>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-
-    set<int> uniqueValues;
-    for (int i = 0; i < n; i++) {
-        int value;
-        cin >> value;
-    }
-
-    cout << uniqueValues.size() << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Do zbioru dodajesz element przez insert.",
       "Duplikaty nie zwiekszaja rozmiaru set.",
@@ -1125,19 +783,7 @@ int main() {
     task: "Wczytaj jedno slowo. Wypisz TAK, jesli jest palindromem, albo NIE w przeciwnym razie.",
     inputFormat: "Jedno slowo bez spacji.",
     outputFormat: "TAK albo NIE.",
-    starterCode: `#include <iostream>
-#include <string>
-using namespace std;
-
-int main() {
-    string word;
-    cin >> word;
-
-    bool ok = true;
-    cout << (ok ? "TAK" : "NIE") << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Porownuj word[i] z word[word.size() - 1 - i].",
       "Wystarczy sprawdzic polowe slowa.",
@@ -1163,22 +809,7 @@ int main() {
     task: "Wczytaj n i n liczb. Wypisz ciag przesuniety o jedno miejsce w lewo, czyli pierwszy element trafia na koniec.",
     inputFormat: "n, potem n liczb.",
     outputFormat: "n liczb oddzielonych spacjami.",
-    starterCode: `#include <iostream>
-#include <vector>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-    vector<int> values(n);
-
-    for (int i = 0; i < n; i++) {
-        cin >> values[i];
-    }
-
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Element o indeksie 1 powinien byc wypisany jako pierwszy.",
       "Po values[n - 1] wypisz values[0].",
@@ -1204,26 +835,7 @@ int main() {
     task: "Wczytaj n i n liczb. Wypisz n liczb: i-ta liczba ma byc suma elementow od poczatku do i-tej pozycji.",
     inputFormat: "n, potem n liczb.",
     outputFormat: "n sum prefiksowych oddzielonych spacjami.",
-    starterCode: `#include <iostream>
-#include <vector>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-    vector<int> values(n);
-
-    for (int i = 0; i < n; i++) {
-        cin >> values[i];
-    }
-
-    long long running = 0;
-    for (int i = 0; i < n; i++) {
-    }
-
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Przed wypisaniem dodaj aktualny element do running.",
       "Wypisuj running po kazdym dodaniu.",
@@ -1249,20 +861,7 @@ int main() {
     task: "Wczytaj dwie dodatnie liczby calkowite a i b. Wypisz ich najwiekszy wspolny dzielnik.",
     inputFormat: "Dwie dodatnie liczby calkowite.",
     outputFormat: "Jedna liczba calkowita.",
-    starterCode: `#include <iostream>
-using namespace std;
-
-int gcd(int a, int b) {
-    return a;
-}
-
-int main() {
-    int a, b;
-    cin >> a >> b;
-    cout << gcd(a, b) << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Dopoki b != 0, oblicz reszte a % b.",
       "Potem przesun liczby: a = b, b = reszta.",
@@ -1288,20 +887,7 @@ int main() {
     task: "Wczytaj liczbe n. Wypisz TAK, jesli n jest liczba pierwsza, albo NIE w przeciwnym razie.",
     inputFormat: "Jedna liczba calkowita.",
     outputFormat: "TAK albo NIE.",
-    starterCode: `#include <iostream>
-using namespace std;
-
-bool isPrime(int n) {
-    return true;
-}
-
-int main() {
-    int n;
-    cin >> n;
-    cout << (isPrime(n) ? "TAK" : "NIE") << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Liczby mniejsze niz 2 nie sa pierwsze.",
       "Wystarczy testowac dzielniki i takie, ze i * i <= n.",
@@ -1327,34 +913,7 @@ int main() {
     task: "Wczytaj n, posortowany rosnaco ciag n liczb oraz szukana wartosc x. Wypisz indeks x liczony od 0 albo -1, jesli x nie wystepuje.",
     inputFormat: "n, n liczb rosnaco, x.",
     outputFormat: "Indeks od 0 albo -1.",
-    starterCode: `#include <iostream>
-#include <vector>
-using namespace std;
-
-int binarySearch(const vector<int>& values, int x) {
-    int left = 0;
-    int right = (int)values.size() - 1;
-
-    while (left <= right) {
-    }
-
-    return -1;
-}
-
-int main() {
-    int n;
-    cin >> n;
-    vector<int> values(n);
-    for (int i = 0; i < n; i++) {
-        cin >> values[i];
-    }
-
-    int x;
-    cin >> x;
-    cout << binarySearch(values, x) << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Srodek przedzialu to left + (right - left) / 2.",
       "Jesli values[mid] jest za male, przesun left na mid + 1.",
@@ -1380,22 +939,7 @@ int main() {
     task: "Wczytaj dwie dodatnie liczby a i b. Wypisz ich najmniejsza wspolna wielokrotnosc.",
     inputFormat: "Dwie dodatnie liczby calkowite.",
     outputFormat: "Jedna liczba calkowita.",
-    starterCode: `#include <iostream>
-using namespace std;
-
-long long gcd(long long a, long long b) {
-    return a;
-}
-
-int main() {
-    long long a, b;
-    cin >> a >> b;
-
-    long long result = 0;
-    cout << result << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Najpierw zaimplementuj gcd.",
       "NWW mozna policzyc jako a / gcd(a, b) * b.",
@@ -1421,18 +965,7 @@ int main() {
     task: "Wczytaj n. Przyjmij F(0)=0, F(1)=1. Wypisz F(n).",
     inputFormat: "Jedna liczba calkowita n z zakresu 0-50.",
     outputFormat: "Jedna liczba.",
-    starterCode: `#include <iostream>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-
-    long long result = 0;
-    cout << result << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Obsluz osobno n == 0 i n == 1 albo ustaw dwie zmienne poczatkowe.",
       "W petli licz kolejna wartosc jako suma dwoch poprzednich.",
@@ -1458,20 +991,7 @@ int main() {
     task: "Wczytaj n. Wypisz, ile liczb pierwszych jest w zakresie od 2 do n.",
     inputFormat: "Jedna liczba calkowita n.",
     outputFormat: "Jedna liczba calkowita.",
-    starterCode: `#include <iostream>
-#include <vector>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-
-    vector<bool> prime(n + 1, true);
-    int count = 0;
-    cout << count << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Dla n < 2 wynik to 0.",
       "Ustaw prime[0] i prime[1] na false.",
@@ -1497,27 +1017,7 @@ int main() {
     task: "Wczytaj n i n liczb. Posortuj je rosnaco metoda przez wybor i wypisz wynik.",
     inputFormat: "n, potem n liczb.",
     outputFormat: "n liczb rosnaco.",
-    starterCode: `#include <iostream>
-#include <vector>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-    vector<int> values(n);
-    for (int i = 0; i < n; i++) {
-        cin >> values[i];
-    }
-
-    for (int i = 0; i < n; i++) {
-    }
-
-    for (int value : values) {
-        cout << value << " ";
-    }
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Dla kazdej pozycji i znajdz indeks najmniejszego elementu od i do konca.",
       "Zamien values[i] z values[bestIndex].",
@@ -1543,24 +1043,7 @@ int main() {
     task: "Wczytaj n i n roznych liczb. Wypisz druga najwieksza liczbe.",
     inputFormat: "n >= 2, potem n roznych liczb.",
     outputFormat: "Jedna liczba.",
-    starterCode: `#include <iostream>
-#include <vector>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-    vector<int> values(n);
-    for (int i = 0; i < n; i++) {
-        cin >> values[i];
-    }
-
-    int best = values[0];
-    int second = values[1];
-    cout << second << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Na poczatku upewnij sie, ze best >= second.",
       "Jesli nowa liczba jest wieksza od best, stary best staje sie second.",
@@ -1586,20 +1069,7 @@ int main() {
     task: "Wczytaj dwa slowa. Wypisz TAK, jesli sa anagramami, albo NIE w przeciwnym razie.",
     inputFormat: "Dwa slowa bez spacji.",
     outputFormat: "TAK albo NIE.",
-    starterCode: `#include <algorithm>
-#include <iostream>
-#include <string>
-using namespace std;
-
-int main() {
-    string a, b;
-    cin >> a >> b;
-
-    bool ok = false;
-    cout << (ok ? "TAK" : "NIE") << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Posortuj oba napisy funkcja sort.",
       "Porownaj posortowane wersje.",
@@ -1625,24 +1095,7 @@ int main() {
     task: "Wczytaj n i n liczb. Wypisz dlugosc najdluzszego spojnego fragmentu, w ktorym kazda kolejna liczba jest wieksza od poprzedniej.",
     inputFormat: "n, potem n liczb.",
     outputFormat: "Jedna liczba calkowita.",
-    starterCode: `#include <iostream>
-#include <vector>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-    vector<int> values(n);
-    for (int i = 0; i < n; i++) {
-        cin >> values[i];
-    }
-
-    int best = 1;
-    int current = 1;
-    cout << best << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Porownuj values[i] z values[i - 1].",
       "Jesli rosnie, zwieksz current.",
@@ -1668,33 +1121,7 @@ int main() {
     task: "Wczytaj n oraz n par: nazwa produktu i cena. Wypisz nazwy produktow posortowane rosnaco po cenie. Przy remisie sortuj alfabetycznie po nazwie.",
     inputFormat: "n, potem n linii: nazwa cena.",
     outputFormat: "Nazwy w kolejnosci sortowania, po jednej w linii.",
-    starterCode: `#include <algorithm>
-#include <iostream>
-#include <string>
-#include <vector>
-using namespace std;
-
-struct Product {
-    string name;
-    int price;
-};
-
-int main() {
-    int n;
-    cin >> n;
-    vector<Product> products(n);
-
-    for (int i = 0; i < n; i++) {
-        cin >> products[i].name >> products[i].price;
-    }
-
-    for (const Product& product : products) {
-        cout << product.name << endl;
-    }
-
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Mozesz przekazac do sort funkcje lambda.",
       "Najpierw porownaj ceny. Jesli sa rozne, mniejsza cena ma byc pierwsza.",
@@ -1720,27 +1147,7 @@ int main() {
     task: "Wczytaj n oraz n slow. Wypisz slowo, ktore wystapilo najczesciej. Przy remisie wypisz alfabetycznie najmniejsze slowo.",
     inputFormat: "n, potem n slow.",
     outputFormat: "Jedno slowo.",
-    starterCode: `#include <iostream>
-#include <map>
-#include <string>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-
-    map<string, int> counter;
-    for (int i = 0; i < n; i++) {
-        string word;
-        cin >> word;
-    }
-
-    string bestWord;
-    int bestCount = 0;
-    cout << bestWord << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "counter[word]++ zwieksza licznik dla danego slowa.",
       "map przechodzi po kluczach w kolejnosci alfabetycznej.",
@@ -1766,28 +1173,7 @@ int main() {
     task: "Wczytaj n, n liczb oraz cel target. Wypisz TAK, jesli istnieja dwie rozne liczby z tablicy o sumie target, albo NIE w przeciwnym razie.",
     inputFormat: "n, n liczb, target.",
     outputFormat: "TAK albo NIE.",
-    starterCode: `#include <algorithm>
-#include <iostream>
-#include <vector>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-    vector<int> values(n);
-
-    for (int i = 0; i < n; i++) {
-        cin >> values[i];
-    }
-
-    int target;
-    cin >> target;
-
-    sort(values.begin(), values.end());
-    cout << "NIE" << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Po sortowaniu ustaw left na poczatku, right na koncu.",
       "Jesli suma jest za mala, przesun left w prawo.",
@@ -1813,25 +1199,7 @@ int main() {
     task: "Wczytaj n, k oraz n wynikow. Wypisz k najwiekszych wynikow malejaco.",
     inputFormat: "n k, potem n liczb.",
     outputFormat: "k liczb oddzielonych spacjami.",
-    starterCode: `#include <algorithm>
-#include <iostream>
-#include <vector>
-using namespace std;
-
-int main() {
-    int n, k;
-    cin >> n >> k;
-    vector<int> scores(n);
-    for (int i = 0; i < n; i++) {
-        cin >> scores[i];
-    }
-
-    for (int i = 0; i < k; i++) {
-        cout << scores[i] << " ";
-    }
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Posortuj scores malejaco.",
       "Mozesz uzyc greater<int>().",
@@ -1857,30 +1225,7 @@ int main() {
     task: "Wczytaj rozmiary a i b, potem a liczb pierwszego zbioru i b liczb drugiego. Wypisz rosnaco liczby, ktore sa w pierwszym zbiorze, ale nie ma ich w drugim.",
     inputFormat: "a b, potem a liczb, potem b liczb.",
     outputFormat: "Liczby roznicy zbiorow oddzielone spacjami.",
-    starterCode: `#include <iostream>
-#include <set>
-using namespace std;
-
-int main() {
-    int a, b;
-    cin >> a >> b;
-
-    set<int> firstSet;
-    set<int> secondSet;
-
-    for (int i = 0; i < a; i++) {
-        int value;
-        cin >> value;
-    }
-
-    for (int i = 0; i < b; i++) {
-        int value;
-        cin >> value;
-    }
-
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Wczytane wartosci dodawaj do odpowiednich setow.",
       "Przejdz po firstSet.",
@@ -1906,27 +1251,7 @@ int main() {
     task: "Wczytaj n, a potem n nazw klas. Wypisz dla kazdej klasy jej nazwe i liczbe wystapien, alfabetycznie po nazwie.",
     inputFormat: "n, potem n slow.",
     outputFormat: "Linie w formacie: klasa liczba.",
-    starterCode: `#include <iostream>
-#include <map>
-#include <string>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-
-    map<string, int> classes;
-    for (int i = 0; i < n; i++) {
-        string name;
-        cin >> name;
-    }
-
-    for (auto entry : classes) {
-        cout << entry.first << " " << entry.second << endl;
-    }
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "classes[name]++ zwieksza licznik klasy.",
       "Nie musisz osobno sortowac mapy.",
@@ -1952,32 +1277,7 @@ int main() {
     task: "Wczytaj n oraz n par: nick punkty. Wypisz nicki posortowane malejaco po punktach, a przy remisie alfabetycznie.",
     inputFormat: "n, potem n linii: nick punkty.",
     outputFormat: "Nicki po jednym w linii.",
-    starterCode: `#include <algorithm>
-#include <iostream>
-#include <string>
-#include <vector>
-using namespace std;
-
-struct Player {
-    string name;
-    int points;
-};
-
-int main() {
-    int n;
-    cin >> n;
-    vector<Player> players(n);
-
-    for (int i = 0; i < n; i++) {
-        cin >> players[i].name >> players[i].points;
-    }
-
-    for (const Player& player : players) {
-        cout << player.name << endl;
-    }
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "W komparatorze najpierw sprawdz, czy points sa rozne.",
       "Wieksza liczba punktow ma byc pierwsza.",
@@ -2003,21 +1303,7 @@ int main() {
     task: "Wczytaj napis zlozony z nawiasow (), [] i {}. Wypisz TAK, jesli nawiasy sa poprawnie zbalansowane, albo NIE.",
     inputFormat: "Jeden napis bez spacji.",
     outputFormat: "TAK albo NIE.",
-    starterCode: `#include <iostream>
-#include <stack>
-#include <string>
-using namespace std;
-
-int main() {
-    string text;
-    cin >> text;
-
-    stack<char> opened;
-    bool ok = true;
-    cout << (ok ? "TAK" : "NIE") << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Nawias otwierajacy dodaj na stos.",
       "Przy zamykajacym sprawdz, czy stos nie jest pusty i czy gora pasuje.",
@@ -2043,24 +1329,7 @@ int main() {
     task: "Wczytaj nieparzyste n oraz n liczb. Wypisz mediane, czyli srodkowy element po posortowaniu rosnaco.",
     inputFormat: "Nieparzyste n, potem n liczb.",
     outputFormat: "Jedna liczba.",
-    starterCode: `#include <algorithm>
-#include <iostream>
-#include <vector>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-    vector<int> values(n);
-    for (int i = 0; i < n; i++) {
-        cin >> values[i];
-    }
-
-    int median = 0;
-    cout << median << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Najpierw posortuj values.",
       "Dla nieparzystego n srodkowy indeks to n / 2.",
@@ -2086,31 +1355,7 @@ int main() {
     task: "Wczytaj n i n liczb, potem q i q zapytan x. Dla kazdego x wypisz, ile razy x wystapilo w danych.",
     inputFormat: "n, n liczb, q, potem q liczb x.",
     outputFormat: "q linii z licznikami.",
-    starterCode: `#include <iostream>
-#include <map>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-
-    map<int, int> counter;
-    for (int i = 0; i < n; i++) {
-        int value;
-        cin >> value;
-    }
-
-    int q;
-    cin >> q;
-    for (int i = 0; i < q; i++) {
-        int x;
-        cin >> x;
-        cout << 0 << endl;
-    }
-
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Podczas wczytywania danych wykonaj counter[value]++.",
       "Dla zapytania x odpowiedzia jest counter[x].",
@@ -2136,31 +1381,7 @@ int main() {
     task: "Wczytaj n oraz n przedzialow [l, r]. Scal przedzialy, ktore sie nachodza lub stykaja. Wypisz liczbe przedzialow po scaleniu, a potem kazdy przedzial w osobnej linii.",
     inputFormat: "n, potem n linii: l r.",
     outputFormat: "Liczba scalonych przedzialow, potem linie l r.",
-    starterCode: `#include <algorithm>
-#include <iostream>
-#include <vector>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-    vector<pair<int, int>> intervals(n);
-
-    for (int i = 0; i < n; i++) {
-        cin >> intervals[i].first >> intervals[i].second;
-    }
-
-    sort(intervals.begin(), intervals.end());
-
-    vector<pair<int, int>> merged;
-    cout << merged.size() << endl;
-    for (auto interval : merged) {
-        cout << interval.first << " " << interval.second << endl;
-    }
-
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Po sortowaniu rozpatrujesz przedzialy od najmniejszego poczatku.",
       "Jesli merged jest puste albo aktualny poczatek jest wiekszy niz koniec ostatniego przedzialu + 1, dodaj nowy przedzial.",
@@ -2186,30 +1407,7 @@ int main() {
     task: "Wczytaj n oraz n zadan opisanych poczatkiem i koncem. Wypisz maksymalna liczbe zadan, ktore mozna wykonac bez nakladania sie. Zadanie konczace sie w chwili t nie koliduje z zadaniem zaczynajacym sie w chwili t.",
     inputFormat: "n, potem n linii: start koniec.",
     outputFormat: "Jedna liczba calkowita.",
-    starterCode: `#include <algorithm>
-#include <iostream>
-#include <vector>
-using namespace std;
-
-int main() {
-    int n;
-    cin >> n;
-    vector<pair<int, int>> tasks(n);
-
-    for (int i = 0; i < n; i++) {
-        int start, finish;
-        cin >> start >> finish;
-        tasks[i] = {finish, start};
-    }
-
-    sort(tasks.begin(), tasks.end());
-
-    int result = 0;
-    int currentTime = -1000000000;
-    cout << result << endl;
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "Klasyczna strategia: wybieraj zadanie, ktore konczy sie najwczesniej.",
       "W parze {finish, start} domyslne sortowanie sortuje najpierw po koncu.",
@@ -2235,39 +1433,7 @@ int main() {
     task: "Wczytaj liczbe operacji q. Operacja ADD name amount zwieksza saldo konta name. Operacja PAY from to amount przenosi amount, ale tylko jesli from ma wystarczajace saldo. Na koncu wypisz salda wszystkich kont alfabetycznie w formacie name saldo.",
     inputFormat: "q, potem q operacji.",
     outputFormat: "Konta alfabetycznie, po jednym w linii.",
-    starterCode: `#include <iostream>
-#include <map>
-#include <string>
-using namespace std;
-
-int main() {
-    int q;
-    cin >> q;
-
-    map<string, long long> balance;
-
-    for (int i = 0; i < q; i++) {
-        string operation;
-        cin >> operation;
-
-        if (operation == "ADD") {
-            string name;
-            long long amount;
-            cin >> name >> amount;
-        } else if (operation == "PAY") {
-            string from, to;
-            long long amount;
-            cin >> from >> to >> amount;
-        }
-    }
-
-    for (auto entry : balance) {
-        cout << entry.first << " " << entry.second << endl;
-    }
-
-    return 0;
-}
-`,
+    starterCode: baseStarterCode,
     hints: [
       "balance[name] tworzy konto z saldem 0, jesli jeszcze go nie bylo.",
       "Przy ADD wystarczy balance[name] += amount.",

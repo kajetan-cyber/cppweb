@@ -3,20 +3,69 @@
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: #17211f;
-  background: #f6f7f4;
+  background: var(--page);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   --ink: #17211f;
   --muted: #64716c;
   --line: #d9e2dc;
+  --page: #f6f7f4;
   --surface: #ffffff;
   --soft: #f0f5f2;
+  --input: #ffffff;
+  --header: rgba(255, 255, 255, 0.94);
+  --selected: #eef8f6;
+  --hover: #f7faf8;
+  --info-bg: #eef6ff;
+  --info-text: #204a79;
+  --tag-bg: #e9f7f4;
+  --tag-text: #1e5f55;
+  --console-bg: #111b19;
+  --console-fg: #eaf7f3;
+  --primary-bg: #17211f;
+  --primary-bg-hover: #263833;
+  --primary-fg: #ffffff;
+  --success-bg: #effaf7;
+  --danger-bg: #fff3f1;
+  --hint-open-bg: #fff8e7;
   --mint: #0f8f82;
   --blue: #356fa8;
   --amber: #a87612;
   --danger: #b42318;
   --shadow: 0 10px 26px rgba(28, 43, 39, 0.08);
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  color: #e6ede9;
+  --ink: #e6ede9;
+  --muted: #a8b7b1;
+  --line: #31443e;
+  --page: #0e1513;
+  --surface: #17211f;
+  --soft: #111b19;
+  --input: #0f1816;
+  --header: rgba(17, 27, 25, 0.94);
+  --selected: #123530;
+  --hover: #1f2d29;
+  --info-bg: #13263a;
+  --info-text: #b9d8ff;
+  --tag-bg: #12352f;
+  --tag-text: #8be0d1;
+  --console-bg: #07100e;
+  --console-fg: #eaf7f3;
+  --primary-bg: #20b8a8;
+  --primary-bg-hover: #32cabb;
+  --primary-fg: #06110f;
+  --success-bg: #12352f;
+  --danger-bg: #341614;
+  --hint-open-bg: #322713;
+  --mint: #20b8a8;
+  --blue: #8bbdf2;
+  --amber: #d7a13e;
+  --danger: #ff9b92;
+  --shadow: 0 10px 26px rgba(0, 0, 0, 0.26);
 }
 
 * {
@@ -27,7 +76,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: #f6f7f4;
+  background: var(--page);
 }
 
 button,
@@ -60,7 +109,7 @@ button:disabled {
   justify-content: space-between;
   padding: 14px 22px;
   border-bottom: 1px solid rgba(23, 33, 31, 0.08);
-  background: rgba(255, 255, 255, 0.94);
+  background: var(--header);
   backdrop-filter: blur(14px);
 }
 
@@ -117,6 +166,7 @@ button:disabled {
 }
 
 .completion-pill,
+.theme-toggle,
 .user-field,
 .difficulty-badge,
 .concept-row span {
@@ -130,6 +180,12 @@ button:disabled {
 }
 
 .completion-pill {
+  padding: 0 12px;
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.theme-toggle {
   padding: 0 12px;
   color: var(--ink);
   font-weight: 800;
@@ -219,7 +275,7 @@ button:disabled {
   border: 1px solid var(--line);
   border-radius: 8px;
   color: var(--ink);
-  background: white;
+  background: var(--input);
 }
 
 .simple-task-list {
@@ -245,7 +301,7 @@ button:disabled {
 .task-button:hover,
 .task-button.is-selected {
   border-color: rgba(15, 143, 130, 0.35);
-  background: #eef8f6;
+  background: var(--selected);
 }
 
 .task-button strong,
@@ -313,8 +369,8 @@ button:disabled {
   padding: 12px;
   border: 1px solid rgba(53, 111, 168, 0.2);
   border-radius: 8px;
-  color: #204a79;
-  background: #eef6ff;
+  color: var(--info-text);
+  background: var(--info-bg);
 }
 
 .intro-box p,
@@ -357,10 +413,10 @@ button:disabled {
 .concept-row span {
   min-height: 30px;
   padding: 0 10px;
-  color: #1e5f55;
+  color: var(--tag-text);
   font-size: 0.85rem;
   font-weight: 800;
-  background: #e9f7f4;
+  background: var(--tag-bg);
 }
 
 .work-grid {
@@ -407,38 +463,39 @@ button:disabled {
   width: 40px;
   border: 1px solid var(--line);
   color: var(--ink);
-  background: white;
+  background: var(--input);
 }
 
 .primary-button {
   padding: 0 15px;
   border: 0;
-  color: white;
-  background: var(--ink);
+  color: var(--primary-fg);
+  background: var(--primary-bg);
 }
 
 .primary-button:hover {
-  background: #263833;
+  background: var(--primary-bg-hover);
 }
 
 .secondary-button {
   padding: 0 13px;
   border: 1px solid var(--line);
   color: var(--ink);
-  background: white;
+  background: var(--input);
 }
 
 .secondary-button:hover,
-.icon-button:hover {
+.icon-button:hover,
+.theme-toggle:hover {
   border-color: #b8c6c0;
-  background: #f7faf8;
+  background: var(--hover);
 }
 
 .danger-button {
   padding: 0 13px;
   border: 1px solid rgba(180, 35, 24, 0.28);
   color: var(--danger);
-  background: #fff3f1;
+  background: var(--danger-bg);
 }
 
 .full-width {
@@ -467,8 +524,8 @@ button:disabled {
   min-height: 620px;
   padding: 16px;
   border: 1px solid #263833;
-  color: #eaf7f3;
-  background: #111b19;
+  color: var(--console-fg);
+  background: var(--console-bg);
 }
 
 .stdin-editor {
@@ -476,7 +533,7 @@ button:disabled {
   padding: 12px;
   border: 1px solid var(--line);
   color: var(--ink);
-  background: white;
+  background: var(--input);
 }
 
 .error-banner {
@@ -487,7 +544,7 @@ button:disabled {
   border: 1px solid rgba(180, 35, 24, 0.25);
   border-radius: 8px;
   color: var(--danger);
-  background: #fff3f1;
+  background: var(--danger-bg);
 }
 
 .results-column {
@@ -506,17 +563,17 @@ button:disabled {
   padding: 12px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: #fbfcfb;
+  background: var(--input);
 }
 
 .test-card.is-pass {
   border-color: rgba(15, 143, 130, 0.42);
-  background: #effaf7;
+  background: var(--success-bg);
 }
 
 .test-card.is-fail {
   border-color: rgba(180, 35, 24, 0.34);
-  background: #fff3f1;
+  background: var(--danger-bg);
 }
 
 .test-head {
@@ -565,7 +622,7 @@ button:disabled {
   padding: 10px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: #fbfcfb;
+  background: var(--input);
 }
 
 .hint-item span {
@@ -582,7 +639,7 @@ button:disabled {
 
 .hint-item.is-open {
   border-color: rgba(168, 118, 18, 0.28);
-  background: #fff8e7;
+  background: var(--hint-open-bg);
 }
 
 .hint-item.is-open span {
@@ -606,8 +663,8 @@ button:disabled {
   max-height: 220px;
   margin: 0;
   overflow: auto;
-  color: #eaf7f3;
-  background: #111b19;
+  color: var(--console-fg);
+  background: var(--console-bg);
 }
 
 .console-output {

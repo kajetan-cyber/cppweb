@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type KeyboardEvent } from "react";
 import {
   BadgeCheck,
   Braces,
@@ -9,9 +9,11 @@ import {
   Code2,
   Download,
   Lightbulb,
+  Moon,
   Play,
   RotateCcw,
   Settings,
+  Sun,
   Terminal,
   User,
 } from "lucide-react";
@@ -26,6 +28,18 @@ const defaultExerciseProgress: ExerciseProgress = {
   bestPassed: 0,
   hintsRevealed: 0,
 };
+
+type Theme = "light" | "dark";
+
+const themeStorageKey = "cpp-akademia-theme";
+
+function loadTheme(): Theme {
+  try {
+    return window.localStorage.getItem(themeStorageKey) === "dark" ? "dark" : "light";
+  } catch {
+    return "light";
+  }
+}
 
 function exerciseProgress(progress: UserProgress, exerciseId: string): ExerciseProgress {
   return progress.exercises[exerciseId] ?? defaultExerciseProgress;
@@ -57,6 +71,7 @@ function downloadProgress(progress: UserProgress) {
 
 export default function App() {
   const [progress, setProgress] = useState<UserProgress>(() => loadProgress());
+  const [theme, setTheme] = useState<Theme>(() => loadTheme());
   const [results, setResults] = useState<TestResult[]>([]);
   const [isRunningTests, setIsRunningTests] = useState(false);
   const [isRunningCustom, setIsRunningCustom] = useState(false);
@@ -79,6 +94,11 @@ export default function App() {
   useEffect(() => {
     saveProgress(progress);
   }, [progress]);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem(themeStorageKey, theme);
+  }, [theme]);
 
   function patchProgress(recipe: (current: UserProgress) => UserProgress) {
     setProgress((current) => recipe(current));
@@ -110,6 +130,29 @@ export default function App() {
         [selectedExercise.id]: code,
       },
     }));
+  }
+
+  function handleCodeKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {
+    if (event.key !== "Tab") {
+      return;
+    }
+
+    event.preventDefault();
+
+    const indent = "    ";
+    const textarea = event.currentTarget;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const value = textarea.value;
+    const nextCode = `${value.slice(0, start)}${indent}${value.slice(end)}`;
+    const nextCursor = start + indent.length;
+
+    updateCode(nextCode);
+
+    window.requestAnimationFrame(() => {
+      textarea.selectionStart = nextCursor;
+      textarea.selectionEnd = nextCursor;
+    });
   }
 
   function updateCustomInput(value: string) {
@@ -262,6 +305,16 @@ export default function App() {
         </div>
 
         <div className="header-actions">
+          <button
+            className="theme-toggle"
+            onClick={() => setTheme((current) => (current === "dark" ? "light" : "dark"))}
+            type="button"
+            aria-label={theme === "dark" ? "Wlacz tryb jasny" : "Wlacz tryb nocny"}
+            title={theme === "dark" ? "Tryb jasny" : "Tryb nocny"}
+          >
+            {theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
+            <span>{theme === "dark" ? "Jasny" : "Nocny"}</span>
+          </button>
           <span className="completion-pill">
             <BadgeCheck size={17} />
             {completedCount}/{exercises.length} zadan
@@ -393,6 +446,7 @@ export default function App() {
                 spellCheck={false}
                 value={selectedCode}
                 onChange={(event) => updateCode(event.target.value)}
+                onKeyDown={handleCodeKeyDown}
                 aria-label="Kod C++"
               />
 

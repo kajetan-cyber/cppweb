@@ -58,6 +58,7 @@ export interface ExerciseProgress {
 }
 
 export interface UserProgress {
+  codeTemplateVersion: number;
   learnerName: string;
   selectedExerciseId: string;
   codeByExercise: Record<string, string>;
