@@ -4,6 +4,7 @@ import { defaultJudge0Settings } from "./judge0";
 
 const storageKey = "cpp-akademia-progress-v1";
 const codeTemplateVersion = 2;
+const legacyDefaultLanguageId = 54;
 
 export function createEmptyProgress(): UserProgress {
   return {
@@ -27,15 +28,20 @@ export function loadProgress(): UserProgress {
 
     const parsed = JSON.parse(raw) as Partial<UserProgress>;
     const shouldResetSavedCode = parsed.codeTemplateVersion !== codeTemplateVersion;
+    const settings = {
+      ...defaultJudge0Settings,
+      ...parsed.settings,
+    };
+
+    if (settings.languageId === legacyDefaultLanguageId) {
+      settings.languageId = defaultJudge0Settings.languageId;
+    }
 
     return {
       ...createEmptyProgress(),
       ...parsed,
       codeTemplateVersion,
-      settings: {
-        ...defaultJudge0Settings,
-        ...parsed.settings,
-      },
+      settings,
       codeByExercise: shouldResetSavedCode ? {} : (parsed.codeByExercise ?? {}),
       customInputByExercise: parsed.customInputByExercise ?? {},
       exercises: parsed.exercises ?? {},

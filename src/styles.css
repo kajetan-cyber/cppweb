@@ -142,7 +142,8 @@ button:disabled {
 
 .brand h1,
 .lesson-heading h2,
-.section-title h2 {
+.section-title h2,
+.section-title h3 {
   margin: 0;
   letter-spacing: 0;
 }
@@ -243,7 +244,8 @@ button:disabled {
   gap: 9px;
 }
 
-.section-title h2 {
+.section-title h2,
+.section-title h3 {
   font-size: 1rem;
 }
 
@@ -268,7 +270,8 @@ button:disabled {
 }
 
 .select-field select,
-.settings-field input {
+.settings-field input,
+.settings-field select {
   width: 100%;
   min-height: 42px;
   padding: 0 10px;
@@ -419,6 +422,26 @@ button:disabled {
   background: var(--tag-bg);
 }
 
+.syntax-reminder {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--soft);
+}
+
+.syntax-reminder pre {
+  margin: 0;
+  overflow-x: auto;
+  color: var(--ink);
+  font-family: "Cascadia Code", "Fira Code", Consolas, monospace;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  white-space: pre;
+}
+
 .work-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(300px, 390px);
@@ -502,7 +525,7 @@ button:disabled {
   width: 100%;
 }
 
-.code-editor,
+.monaco-shell,
 .stdin-editor,
 .console-output,
 .mini-console {
@@ -514,18 +537,16 @@ button:disabled {
   tab-size: 4;
 }
 
-.code-editor,
 .stdin-editor {
   resize: vertical;
   outline: 0;
 }
 
-.code-editor {
-  min-height: 620px;
-  padding: 16px;
+.monaco-shell {
+  height: 620px;
   border: 1px solid #263833;
-  color: var(--console-fg);
   background: var(--console-bg);
+  overflow: hidden;
 }
 
 .stdin-editor {
@@ -759,8 +780,8 @@ button:disabled {
     grid-template-columns: 1fr;
   }
 
-  .code-editor {
-    min-height: 440px;
+  .monaco-shell {
+    height: 440px;
   }
 
   .test-card dl div {

@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState, type KeyboardEvent } from "react";
+import { useEffect, useMemo, useState } from "react";
+import Editor from "@monaco-editor/react";
 import {
   BadgeCheck,
   Braces,
@@ -32,6 +33,28 @@ const defaultExerciseProgress: ExerciseProgress = {
 type Theme = "light" | "dark";
 
 const themeStorageKey = "cpp-akademia-theme";
+
+const compilerProfiles = [
+  { languageId: 105, label: "GCC 14.1.0 (zalecany)" },
+  { languageId: 54, label: "GCC 9.2.0" },
+  { languageId: 76, label: "Clang 7.0.1" },
+];
+
+const startSyntaxReminder = [
+  "#include <bits/stdc++.h>",
+  "using namespace std;",
+  "",
+  "cout << \"Tekst\" << endl;",
+  "cin >> zmienna;",
+  "",
+  "if (warunek) {",
+  "    // instrukcje",
+  "}",
+  "",
+  "for (int i = 0; i < n; i++) {",
+  "    // instrukcje powtarzane n razy",
+  "}",
+].join("\n");
 
 function loadTheme(): Theme {
   try {
@@ -130,29 +153,6 @@ export default function App() {
         [selectedExercise.id]: code,
       },
     }));
-  }
-
-  function handleCodeKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {
-    if (event.key !== "Tab") {
-      return;
-    }
-
-    event.preventDefault();
-
-    const indent = "    ";
-    const textarea = event.currentTarget;
-    const start = textarea.selectionStart;
-    const end = textarea.selectionEnd;
-    const value = textarea.value;
-    const nextCode = `${value.slice(0, start)}${indent}${value.slice(end)}`;
-    const nextCursor = start + indent.length;
-
-    updateCode(nextCode);
-
-    window.requestAnimationFrame(() => {
-      textarea.selectionStart = nextCursor;
-      textarea.selectionEnd = nextCursor;
-    });
   }
 
   function updateCustomInput(value: string) {
@@ -395,6 +395,16 @@ export default function App() {
 
             <p className="task-text">{selectedExercise.task}</p>
 
+            {selectedStage.id === "start" ? (
+              <div className="syntax-reminder">
+                <div className="section-title">
+                  <Code2 size={17} />
+                  <h3>Przypomnienie skladni</h3>
+                </div>
+                <pre>{startSyntaxReminder}</pre>
+              </div>
+            ) : null}
+
             <div className="io-grid">
               <div>
                 <span>Wejscie</span>
@@ -441,14 +451,29 @@ export default function App() {
                 </div>
               </div>
 
-              <textarea
-                className="code-editor"
-                spellCheck={false}
-                value={selectedCode}
-                onChange={(event) => updateCode(event.target.value)}
-                onKeyDown={handleCodeKeyDown}
-                aria-label="Kod C++"
-              />
+              <div className="monaco-shell">
+                <Editor
+                  height="100%"
+                  language="cpp"
+                  theme={theme === "dark" ? "vs-dark" : "vs"}
+                  value={selectedCode}
+                  onChange={(value) => updateCode(value ?? "")}
+                  options={{
+                    automaticLayout: true,
+                    bracketPairColorization: { enabled: true },
+                    detectIndentation: false,
+                    fontFamily: '"Cascadia Code", "Fira Code", Consolas, monospace',
+                    fontSize: 15,
+                    formatOnPaste: true,
+                    formatOnType: true,
+                    insertSpaces: true,
+                    minimap: { enabled: false },
+                    scrollBeyondLastLine: false,
+                    tabSize: 4,
+                    wordWrap: "on",
+                  }}
+                />
+              </div>
 
               {runError ? (
                 <div className="error-banner">
@@ -599,9 +624,8 @@ export default function App() {
                   />
                 </label>
                 <label className="settings-field">
-                  <span>Language ID C++</span>
-                  <input
-                    type="number"
+                  <span>Kompilator C++</span>
+                  <select
                     value={progress.settings.languageId}
                     onChange={(event) =>
                       patchProgress((current) => ({
@@ -612,7 +636,13 @@ export default function App() {
                         },
                       }))
                     }
-                  />
+                  >
+                    {compilerProfiles.map((profile) => (
+                      <option key={profile.languageId} value={profile.languageId}>
+                        {profile.label}
+                      </option>
+                    ))}
+                  </select>
                 </label>
 
                 <div className="utility-actions">

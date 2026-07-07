@@ -3,7 +3,7 @@ import { outputsMatch } from "./output";
 
 export const defaultJudge0Settings: Judge0Settings = {
   endpoint: "https://ce.judge0.com",
-  languageId: 54,
+  languageId: 105,
 };
 
 interface Judge0Response {
