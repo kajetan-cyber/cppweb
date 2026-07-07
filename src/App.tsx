@@ -379,6 +379,10 @@ export default function App() {
                 <ClipboardList size={18} />
                 <h3>Zadanie</h3>
               </div>
+              <div className="intro-box">
+                <Lightbulb size={18} />
+                <p>{selectedExercise.intro}</p>
+              </div>
               <p>{selectedExercise.task}</p>
 
               <div className="io-grid">
@@ -444,7 +448,11 @@ export default function App() {
                           </div>
                           <div>
                             <dt>oczekiwane</dt>
-                            <dd>{test.hidden ? "ukryte" : test.expectedOutput}</dd>
+                            <dd>
+                              {result && !test.hidden
+                                ? formatOutput(test.expectedOutput)
+                                : "ukryte do uruchomienia"}
+                            </dd>
                           </div>
                           {result ? (
                             <div>

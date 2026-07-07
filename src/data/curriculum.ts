@@ -67,6 +67,8 @@ export const exercises: Exercise[] = [
     minutes: 8,
     concepts: ["iostream", "string", "cout"],
     brief: "Napisz pierwszy program, ktory czyta imie i wypisuje powitanie.",
+    intro:
+      "Najprostszy program w C++ zwykle sklada sie z wczytania danych i wypisania odpowiedzi. W tym zadaniu cwiczysz laczenie tekstu ze zmienna.",
     task: "Program ma wczytac jedno slowo: imie. Wypisz dokladnie: Witaj <imie>.",
     inputFormat: "Jedno slowo bez spacji.",
     outputFormat: "Linia w formacie: Witaj Ola",
@@ -77,8 +79,6 @@ using namespace std;
 int main() {
     string name;
     cin >> name;
-
-    // wypisz powitanie
 
     return 0;
 }
@@ -103,6 +103,8 @@ int main() {
     minutes: 10,
     concepts: ["int", "cin", "operatory"],
     brief: "Wczytaj dwie liczby calkowite i wypisz ich sume.",
+    intro:
+      "Zmienne pozwalaja przechowac dane z wejscia. Kiedy masz juz dwie liczby, mozesz wykonac na nich zwykla operacje arytmetyczna.",
     task: "Na wejsciu sa dwie liczby calkowite a i b. Wypisz jedna liczbe: a + b.",
     inputFormat: "Dwie liczby calkowite oddzielone spacja.",
     outputFormat: "Jedna liczba calkowita.",
@@ -112,8 +114,6 @@ using namespace std;
 int main() {
     int a, b;
     cin >> a >> b;
-
-    // oblicz i wypisz sume
 
     return 0;
 }
@@ -138,6 +138,8 @@ int main() {
     minutes: 12,
     concepts: ["double", "wzor", "fixed"],
     brief: "Przelicz temperature i wypisz wynik z jedna cyfra po przecinku.",
+    intro:
+      "Nie kazde obliczenie jest calkowite. Typ double daje miejsce na czesc ulamkowa, a iomanip pozwala kontrolowac format wyniku.",
     task: "Wczytaj temperature w stopniach Celsjusza i wypisz temperature w Fahrenheitach wedlug wzoru F = C * 9 / 5 + 32. Wynik wypisz z jedna cyfra po przecinku.",
     inputFormat: "Jedna liczba rzeczywista.",
     outputFormat: "Jedna liczba z jedna cyfra po przecinku.",
@@ -149,20 +151,286 @@ int main() {
     double celsius;
     cin >> celsius;
 
-    // oblicz fahrenheity
-
+    double fahrenheit = 0.0;
+    cout << fixed << setprecision(1) << fahrenheit << endl;
     return 0;
 }
 `,
     hints: [
       "Do ustawienia liczby miejsc po przecinku uzyj fixed oraz setprecision(1).",
       "Pamietaj, aby uzyc double, bo wynik moze miec czesc ulamkowa.",
-      "Wypisanie moze wygladac tak: cout << fixed << setprecision(1) << fahrenheit << endl;",
+      "Wzor to celsius * 9.0 / 5.0 + 32.0.",
     ],
     tests: [
       { name: "Zero", input: "0", expectedOutput: "32.0" },
       { name: "Temperatura pokojowa", input: "20", expectedOutput: "68.0" },
       { name: "Ujemna", input: "-10", expectedOutput: "14.0", hidden: true },
+    ],
+  },
+  {
+    id: "rectangle-area",
+    stageId: "start",
+    title: "Pole prostokata",
+    difficulty: "Latwe",
+    xp: 45,
+    minutes: 10,
+    concepts: ["int", "mnozenie", "cout"],
+    brief: "Policz pole prostokata z dwoch bokow.",
+    intro:
+      "W programowaniu czesto przekladasz prosty wzor matematyczny na kod. Najpierw wczytaj dane, potem oblicz wynik i wypisz go.",
+    task: "Wczytaj dlugosci bokow a i b. Wypisz pole prostokata, czyli a * b.",
+    inputFormat: "Dwie dodatnie liczby calkowite.",
+    outputFormat: "Jedna liczba calkowita.",
+    starterCode: `#include <iostream>
+using namespace std;
+
+int main() {
+    int a, b;
+    cin >> a >> b;
+
+    int area = 0;
+    cout << area << endl;
+    return 0;
+}
+`,
+    hints: [
+      "Pole prostokata to iloczyn bokow.",
+      "Zmienna area powinna przechowac a * b.",
+      "Wypisz tylko liczbe, bez jednostki.",
+    ],
+    tests: [
+      { name: "Maly prostokat", input: "3 4", expectedOutput: "12" },
+      { name: "Kwadrat", input: "7 7", expectedOutput: "49" },
+      { name: "Waski", input: "1 25", expectedOutput: "25", hidden: true },
+    ],
+  },
+  {
+    id: "average-three",
+    stageId: "start",
+    title: "Srednia z trzech liczb",
+    difficulty: "Latwe",
+    xp: 55,
+    minutes: 14,
+    concepts: ["double", "dzielenie", "setprecision"],
+    brief: "Oblicz srednia arytmetyczna i sformatuj wynik.",
+    intro:
+      "Dzielenie calkowite obcina czesc po przecinku. Dlatego przy srednich warto uzyc double albo dzielic przez 3.0.",
+    task: "Wczytaj trzy liczby rzeczywiste. Wypisz ich srednia z dokladnoscia do dwoch miejsc po przecinku.",
+    inputFormat: "Trzy liczby rzeczywiste.",
+    outputFormat: "Jedna liczba z dwoma miejscami po przecinku.",
+    starterCode: `#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+    double a, b, c;
+    cin >> a >> b >> c;
+
+    double average = 0.0;
+    cout << fixed << setprecision(2) << average << endl;
+    return 0;
+}
+`,
+    hints: [
+      "Dodaj wszystkie trzy liczby.",
+      "Podziel sume przez 3.0.",
+      "Do formatu uzyj fixed oraz setprecision(2).",
+    ],
+    tests: [
+      { name: "Calkowita srednia", input: "2 4 6", expectedOutput: "4.00" },
+      { name: "Ulamkowa", input: "1 2 2", expectedOutput: "1.67" },
+      { name: "Z zerami", input: "0 0 3", expectedOutput: "1.00", hidden: true },
+    ],
+  },
+  {
+    id: "seconds-to-time",
+    stageId: "start",
+    title: "Sekundy na czas",
+    difficulty: "Latwe",
+    xp: 60,
+    minutes: 15,
+    concepts: ["dzielenie", "modulo", "int"],
+    brief: "Zamien liczbe sekund na godziny, minuty i sekundy.",
+    intro:
+      "Operator / daje iloraz calkowity, a % reszte z dzielenia. Razem pozwalaja rozbijac liczby na czesci.",
+    task: "Wczytaj liczbe sekund s. Wypisz trzy liczby: godziny, minuty i sekundy pozostale po przeliczeniu.",
+    inputFormat: "Jedna nieujemna liczba calkowita.",
+    outputFormat: "Trzy liczby: h m s.",
+    starterCode: `#include <iostream>
+using namespace std;
+
+int main() {
+    int totalSeconds;
+    cin >> totalSeconds;
+
+    int hours = 0;
+    int minutes = 0;
+    int seconds = 0;
+    cout << hours << " " << minutes << " " << seconds << endl;
+    return 0;
+}
+`,
+    hints: [
+      "Godziny to totalSeconds / 3600.",
+      "Po odjeciu godzin zostaja sekundy modulo 3600.",
+      "Minuty liczysz przez / 60, a sekundy przez % 60.",
+    ],
+    tests: [
+      { name: "Jedna godzina", input: "3661", expectedOutput: "1 1 1" },
+      { name: "Mniej niz minuta", input: "42", expectedOutput: "0 0 42" },
+      { name: "Rowno minuty", input: "120", expectedOutput: "0 2 0", hidden: true },
+    ],
+  },
+  {
+    id: "swap-values",
+    stageId: "start",
+    title: "Zamiana wartosci",
+    difficulty: "Latwe",
+    xp: 50,
+    minutes: 12,
+    concepts: ["zmienna pomocnicza", "przypisanie", "cout"],
+    brief: "Zamien miejscami dwie zmienne.",
+    intro:
+      "Przypisanie nadpisuje stara wartosc. Aby bezpiecznie zamienic dwie zmienne, zwykle potrzebujesz zmiennej pomocniczej.",
+    task: "Wczytaj dwie liczby a i b. Wypisz je w odwrotnej kolejnosci: najpierw b, potem a.",
+    inputFormat: "Dwie liczby calkowite.",
+    outputFormat: "Dwie liczby oddzielone spacja.",
+    starterCode: `#include <iostream>
+using namespace std;
+
+int main() {
+    int a, b;
+    cin >> a >> b;
+
+    cout << a << " " << b << endl;
+    return 0;
+}
+`,
+    hints: [
+      "Mozesz po prostu wypisac b, a potem a.",
+      "Jesli chcesz faktycznie zamienic wartosci, uzyj trzeciej zmiennej.",
+      "Format wymaga jednej spacji miedzy liczbami.",
+    ],
+    tests: [
+      { name: "Rozne liczby", input: "4 9", expectedOutput: "9 4" },
+      { name: "Z ujemna", input: "-1 7", expectedOutput: "7 -1" },
+      { name: "Takie same", input: "5 5", expectedOutput: "5 5", hidden: true },
+    ],
+  },
+  {
+    id: "last-digit",
+    stageId: "start",
+    title: "Ostatnia cyfra",
+    difficulty: "Latwe",
+    xp: 50,
+    minutes: 12,
+    concepts: ["modulo", "abs", "liczby calkowite"],
+    brief: "Wyciagnij ostatnia cyfre liczby.",
+    intro:
+      "Modulo 10 pozwala odczytac ostatnia cyfre liczby. Przy liczbach ujemnych najbezpieczniej najpierw zmienic znak.",
+    task: "Wczytaj liczbe calkowita n. Wypisz jej ostatnia cyfre jako liczbe nieujemna.",
+    inputFormat: "Jedna liczba calkowita.",
+    outputFormat: "Jedna cyfra od 0 do 9.",
+    starterCode: `#include <cstdlib>
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    int digit = 0;
+    cout << digit << endl;
+    return 0;
+}
+`,
+    hints: [
+      "Dla dodatniego n ostatnia cyfra to n % 10.",
+      "Dla ujemnego n uzyj abs(n) albo pomnoz wynik przez -1.",
+      "Wypisz sama cyfre.",
+    ],
+    tests: [
+      { name: "Dodatnia", input: "1234", expectedOutput: "4" },
+      { name: "Ujemna", input: "-987", expectedOutput: "7" },
+      { name: "Zero", input: "0", expectedOutput: "0", hidden: true },
+    ],
+  },
+  {
+    id: "circle-area",
+    stageId: "start",
+    title: "Pole kola",
+    difficulty: "Latwe",
+    xp: 60,
+    minutes: 15,
+    concepts: ["double", "stala", "mnozenie"],
+    brief: "Oblicz pole kola dla podanego promienia.",
+    intro:
+      "Stale wartosci, takie jak pi, dobrze zapisac w osobnej zmiennej const. Dzieki temu wzor jest czytelny.",
+    task: "Wczytaj promien r. Przyjmij pi = 3.14159 i wypisz pole kola z trzema miejscami po przecinku.",
+    inputFormat: "Jedna liczba rzeczywista.",
+    outputFormat: "Jedna liczba z trzema miejscami po przecinku.",
+    starterCode: `#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+    const double pi = 3.14159;
+    double r;
+    cin >> r;
+
+    double area = 0.0;
+    cout << fixed << setprecision(3) << area << endl;
+    return 0;
+}
+`,
+    hints: [
+      "Pole kola to pi * r * r.",
+      "Uzyj zmiennej double.",
+      "Format ustaw przez fixed i setprecision(3).",
+    ],
+    tests: [
+      { name: "Promien 1", input: "1", expectedOutput: "3.142" },
+      { name: "Promien 2", input: "2", expectedOutput: "12.566" },
+      { name: "Polowka", input: "0.5", expectedOutput: "0.785", hidden: true },
+    ],
+  },
+  {
+    id: "bill-split",
+    stageId: "start",
+    title: "Podzial rachunku",
+    difficulty: "Latwe",
+    xp: 65,
+    minutes: 16,
+    concepts: ["double", "dzielenie", "format"],
+    brief: "Podziel kwote rachunku na rowne czesci.",
+    intro:
+      "Programy czesto obliczaja wartosci praktyczne: koszt, srednia, wynik pomiaru. Najwazniejsze jest dobranie typu i formatu.",
+    task: "Wczytaj kwote rachunku oraz liczbe osob. Wypisz, ile placi jedna osoba, z dwoma miejscami po przecinku.",
+    inputFormat: "Liczba rzeczywista total oraz liczba calkowita people.",
+    outputFormat: "Jedna liczba z dwoma miejscami po przecinku.",
+    starterCode: `#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+    double total;
+    int people;
+    cin >> total >> people;
+
+    double perPerson = 0.0;
+    cout << fixed << setprecision(2) << perPerson << endl;
+    return 0;
+}
+`,
+    hints: [
+      "Podziel total przez people.",
+      "Aby uniknac dzielenia calkowitego, wynik trzymaj w double.",
+      "Wypisz dokladnie dwa miejsca po przecinku.",
+    ],
+    tests: [
+      { name: "Bez reszty", input: "100 4", expectedOutput: "25.00" },
+      { name: "Z ulamkiem", input: "10 3", expectedOutput: "3.33" },
+      { name: "Jedna osoba", input: "42.5 1", expectedOutput: "42.50", hidden: true },
     ],
   },
   {
@@ -174,6 +442,8 @@ int main() {
     minutes: 12,
     concepts: ["if", "modulo", "warunek"],
     brief: "Podejmij decyzje na podstawie reszty z dzielenia.",
+    intro:
+      "Instrukcja if pozwala wybrac jedna z kilku drog programu. Parzystosc to klasyczny przyklad warunku opartego o modulo.",
     task: "Wczytaj liczbe calkowita n. Jesli jest parzysta, wypisz PARZYSTA, w przeciwnym razie wypisz NIEPARZYSTA.",
     inputFormat: "Jedna liczba calkowita.",
     outputFormat: "PARZYSTA albo NIEPARZYSTA.",
@@ -183,8 +453,6 @@ using namespace std;
 int main() {
     int n;
     cin >> n;
-
-    // sprawdz parzystosc
 
     return 0;
 }
@@ -209,6 +477,8 @@ int main() {
     minutes: 15,
     concepts: ["if", "porownania", "zmienna pomocnicza"],
     brief: "Znajdz maksimum bez zakladania kolejnosci danych.",
+    intro:
+      "Porownywanie kilku wartosci najlatwiej zaczac od kandydata na wynik. Potem aktualizujesz go, gdy znajdziesz lepsza wartosc.",
     task: "Wczytaj trzy liczby calkowite. Wypisz najwieksza z nich.",
     inputFormat: "Trzy liczby calkowite.",
     outputFormat: "Jedna liczba calkowita.",
@@ -220,8 +490,6 @@ int main() {
     cin >> a >> b >> c;
 
     int best = a;
-    // porownaj best z b oraz c
-
     cout << best << endl;
     return 0;
 }
@@ -246,6 +514,8 @@ int main() {
     minutes: 20,
     concepts: ["for", "kolejnosc warunkow", "modulo"],
     brief: "Klasyczne cwiczenie na petle i warunki.",
+    intro:
+      "Kiedy masz kilka warunkow, ich kolejnosc moze zmienic wynik. Najbardziej szczegolny przypadek sprawdzaj jako pierwszy.",
     task: "Wczytaj n. Dla liczb od 1 do n wypisz w osobnych liniach: FizzBuzz dla podzielnych przez 3 i 5, Fizz dla podzielnych przez 3, Buzz dla podzielnych przez 5, a w pozostalych przypadkach sama liczbe.",
     inputFormat: "Jedna liczba calkowita n.",
     outputFormat: "n linii.",
@@ -257,7 +527,6 @@ int main() {
     cin >> n;
 
     for (int i = 1; i <= n; i++) {
-        // uzupelnij warunki
     }
 
     return 0;
@@ -275,6 +544,275 @@ int main() {
     ],
   },
   {
+    id: "sign-of-number",
+    stageId: "control",
+    title: "Znak liczby",
+    difficulty: "Latwe",
+    xp: 55,
+    minutes: 12,
+    concepts: ["if", "else if", "porownania"],
+    brief: "Rozpoznaj, czy liczba jest dodatnia, ujemna albo zerowa.",
+    intro:
+      "Czasem masz wiecej niz dwie mozliwosci. Konstrukcja else if pozwala czytelnie zapisac kilka rozlacznych przypadkow.",
+    task: "Wczytaj liczbe calkowita n. Wypisz DODATNIA, UJEMNA albo ZERO.",
+    inputFormat: "Jedna liczba calkowita.",
+    outputFormat: "Jedno z trzech slow.",
+    starterCode: `#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    return 0;
+}
+`,
+    hints: [
+      "Najpierw mozesz sprawdzic n > 0.",
+      "Potem n < 0.",
+      "Jesli oba warunki sa falszywe, zostaje zero.",
+    ],
+    tests: [
+      { name: "Dodatnia", input: "8", expectedOutput: "DODATNIA" },
+      { name: "Ujemna", input: "-2", expectedOutput: "UJEMNA" },
+      { name: "Zero", input: "0", expectedOutput: "ZERO", hidden: true },
+    ],
+  },
+  {
+    id: "leap-year",
+    stageId: "control",
+    title: "Rok przestepny",
+    difficulty: "Srednie",
+    xp: 75,
+    minutes: 18,
+    concepts: ["warunki zlozone", "modulo", "logika"],
+    brief: "Zastosuj kilka warunkow w jednej decyzji.",
+    intro:
+      "Warunki mozna laczyc operatorami && oraz ||. Przy takich zadaniach dobrze najpierw zapisac regule slowami.",
+    task: "Wczytaj rok. Wypisz TAK, jesli rok jest przestepny. Rok jest przestepny, gdy dzieli sie przez 400 albo dzieli sie przez 4 i nie dzieli przez 100.",
+    inputFormat: "Jedna liczba calkowita.",
+    outputFormat: "TAK albo NIE.",
+    starterCode: `#include <iostream>
+using namespace std;
+
+int main() {
+    int year;
+    cin >> year;
+
+    bool leap = false;
+    cout << (leap ? "TAK" : "NIE") << endl;
+    return 0;
+}
+`,
+    hints: [
+      "Warunek dzielenia przez 400 jest wystarczajacy.",
+      "Dla pozostalych lat sprawdz podzielnosc przez 4 i brak podzielnosci przez 100.",
+      "Zadbaj o rok 1900 i 2000.",
+    ],
+    tests: [
+      { name: "Rok 2000", input: "2000", expectedOutput: "TAK" },
+      { name: "Rok 1900", input: "1900", expectedOutput: "NIE" },
+      { name: "Rok 2024", input: "2024", expectedOutput: "TAK", hidden: true },
+    ],
+  },
+  {
+    id: "grade-range",
+    stageId: "control",
+    title: "Ocena z punktow",
+    difficulty: "Latwe",
+    xp: 65,
+    minutes: 16,
+    concepts: ["else if", "progi", "char"],
+    brief: "Przypisz wynik do odpowiedniego progu.",
+    intro:
+      "Progi najlepiej sprawdzac od najwyzszego albo od najnizszego. Wtedy kazdy kolejny warunek ma jasny sens.",
+    task: "Wczytaj liczbe punktow. Wypisz A dla 90 lub wiecej, B dla 75-89, C dla 50-74 oraz D dla mniej niz 50.",
+    inputFormat: "Jedna liczba calkowita.",
+    outputFormat: "Jeden znak.",
+    starterCode: `#include <iostream>
+using namespace std;
+
+int main() {
+    int points;
+    cin >> points;
+
+    char result = 'D';
+    cout << result << endl;
+    return 0;
+}
+`,
+    hints: [
+      "Zacznij od points >= 90.",
+      "Potem sprawdz points >= 75.",
+      "Jesli zaden wyzszy prog nie pasuje, zostaje D.",
+    ],
+    tests: [
+      { name: "A", input: "93", expectedOutput: "A" },
+      { name: "C", input: "60", expectedOutput: "C" },
+      { name: "Granica D", input: "49", expectedOutput: "D", hidden: true },
+    ],
+  },
+  {
+    id: "sum-to-n",
+    stageId: "control",
+    title: "Suma od 1 do n",
+    difficulty: "Latwe",
+    xp: 70,
+    minutes: 16,
+    concepts: ["for", "akumulator", "long long"],
+    brief: "Uzyj petli do dodawania kolejnych liczb.",
+    intro:
+      "Akumulator to zmienna, ktora przechowuje wynik budowany krok po kroku. W petli dodajesz do niej kolejne skladniki.",
+    task: "Wczytaj n. Wypisz sume liczb od 1 do n wlacznie.",
+    inputFormat: "Jedna dodatnia liczba calkowita.",
+    outputFormat: "Jedna liczba.",
+    starterCode: `#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    long long sum = 0;
+    for (int i = 1; i <= n; i++) {
+    }
+
+    cout << sum << endl;
+    return 0;
+}
+`,
+    hints: [
+      "W kazdym obrocie petli dodaj i do sum.",
+      "Dla wiekszych n uzyj long long.",
+      "Petla powinna zaczynac sie od 1 i konczyc na n.",
+    ],
+    tests: [
+      { name: "Piec", input: "5", expectedOutput: "15" },
+      { name: "Jeden", input: "1", expectedOutput: "1" },
+      { name: "Sto", input: "100", expectedOutput: "5050", hidden: true },
+    ],
+  },
+  {
+    id: "count-divisors",
+    stageId: "control",
+    title: "Liczba dzielnikow",
+    difficulty: "Srednie",
+    xp: 85,
+    minutes: 22,
+    concepts: ["for", "modulo", "licznik"],
+    brief: "Policz, ile liczb dzieli n bez reszty.",
+    intro:
+      "Licznik dziala podobnie jak akumulator, ale zwykle zwiekszasz go o 1 tylko wtedy, gdy warunek jest spelniony.",
+    task: "Wczytaj dodatnia liczbe n. Wypisz liczbe jej dodatnich dzielnikow.",
+    inputFormat: "Jedna dodatnia liczba calkowita.",
+    outputFormat: "Jedna liczba calkowita.",
+    starterCode: `#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    int count = 0;
+    for (int i = 1; i <= n; i++) {
+    }
+
+    cout << count << endl;
+    return 0;
+}
+`,
+    hints: [
+      "i jest dzielnikiem, gdy n % i == 0.",
+      "Za kazdy dzielnik zwieksz count.",
+      "Na tym etapie petla do n jest wystarczajaca.",
+    ],
+    tests: [
+      { name: "Szesc", input: "6", expectedOutput: "4" },
+      { name: "Pierwsza", input: "13", expectedOutput: "2" },
+      { name: "Jeden", input: "1", expectedOutput: "1", hidden: true },
+    ],
+  },
+  {
+    id: "factorial-small",
+    stageId: "control",
+    title: "Silnia",
+    difficulty: "Srednie",
+    xp: 85,
+    minutes: 22,
+    concepts: ["for", "mnozenie", "long long"],
+    brief: "Pomnoz liczby od 1 do n.",
+    intro:
+      "Nie kazdy akumulator sumuje. Przy silni wynik budujesz przez mnozenie, dlatego wartosc startowa powinna wynosic 1.",
+    task: "Wczytaj n z zakresu 0-12. Wypisz n!, czyli iloczyn liczb od 1 do n.",
+    inputFormat: "Jedna liczba calkowita.",
+    outputFormat: "Jedna liczba calkowita.",
+    starterCode: `#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    long long result = 1;
+    for (int i = 1; i <= n; i++) {
+    }
+
+    cout << result << endl;
+    return 0;
+}
+`,
+    hints: [
+      "Dla n = 0 wynik to 1.",
+      "W petli mnoz result przez i.",
+      "Uzyj long long, aby bezpiecznie przechowac 12!.",
+    ],
+    tests: [
+      { name: "Piec", input: "5", expectedOutput: "120" },
+      { name: "Zero", input: "0", expectedOutput: "1" },
+      { name: "Dwanascie", input: "12", expectedOutput: "479001600", hidden: true },
+    ],
+  },
+  {
+    id: "multiplication-table",
+    stageId: "control",
+    title: "Tabliczka mnozenia",
+    difficulty: "Srednie",
+    xp: 90,
+    minutes: 24,
+    concepts: ["petle zagniezdzone", "format", "mnozenie"],
+    brief: "Wypisz kwadratowa tabliczke mnozenia.",
+    intro:
+      "Petla zagniezdzona oznacza petle w petli. Zewnetrzna odpowiada za wiersze, a wewnetrzna za kolumny.",
+    task: "Wczytaj n. Wypisz tabliczke mnozenia n x n. W kazdym wierszu wypisz n liczb oddzielonych spacjami.",
+    inputFormat: "Jedna dodatnia liczba calkowita n.",
+    outputFormat: "n wierszy po n liczb.",
+    starterCode: `#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    for (int row = 1; row <= n; row++) {
+        for (int col = 1; col <= n; col++) {
+        }
+    }
+
+    return 0;
+}
+`,
+    hints: [
+      "Element w wierszu row i kolumnie col to row * col.",
+      "Po kazdym wierszu wypisz endl.",
+      "Spacje na koncu wiersza nie przeszkadzaja w tej sprawdzarce.",
+    ],
+    tests: [
+      { name: "Dwa", input: "2", expectedOutput: "1 2\n2 4" },
+      { name: "Trzy", input: "3", expectedOutput: "1 2 3\n2 4 6\n3 6 9" },
+      { name: "Jeden", input: "1", expectedOutput: "1", hidden: true },
+    ],
+  },
+  {
     id: "sum-array",
     stageId: "structures",
     title: "Suma elementow",
@@ -283,6 +821,8 @@ int main() {
     minutes: 20,
     concepts: ["vector", "petla", "akumulator"],
     brief: "Przetworz serie liczb i policz ich laczna wartosc.",
+    intro:
+      "Wektor przechowuje wiele wartosci jednego typu. Gdy dane sa juz w wektorze, mozesz przejsc po nich petla.",
     task: "Wczytaj n, a potem n liczb calkowitych. Wypisz sume wszystkich liczb.",
     inputFormat: "n, potem n liczb.",
     outputFormat: "Jedna liczba calkowita.",
@@ -300,8 +840,6 @@ int main() {
     }
 
     long long sum = 0;
-    // policz sume
-
     cout << sum << endl;
     return 0;
 }
@@ -326,6 +864,8 @@ int main() {
     minutes: 22,
     concepts: ["funkcje", "return", "warunki"],
     brief: "Przenies logike do funkcji, zeby main pozostal czytelny.",
+    intro:
+      "Funkcja pozwala nazwac fragment logiki. Main wtedy tylko wczytuje dane, wywoluje funkcje i wypisuje wynik.",
     task: "Napisz funkcje grade(points), ktora zwraca znak oceny: A dla 90 lub wiecej, B dla 75-89, C dla 50-74 oraz D dla mniej niz 50. Wczytaj punkty i wypisz ocene.",
     inputFormat: "Jedna liczba calkowita z zakresu 0-100.",
     outputFormat: "Jeden znak: A, B, C albo D.",
@@ -333,7 +873,6 @@ int main() {
 using namespace std;
 
 char grade(int points) {
-    // uzupelnij funkcje
     return 'D';
 }
 
@@ -364,6 +903,8 @@ int main() {
     minutes: 25,
     concepts: ["vector", "indeksy", "format wyjscia"],
     brief: "Wypisz elementy wektora od konca.",
+    intro:
+      "Indeksy w C++ zaczynaja sie od zera. Ostatni element ma indeks n - 1, wiec petla moze isc w dol.",
     task: "Wczytaj n i n liczb. Wypisz liczby w odwrotnej kolejnosc, oddzielone spacjami.",
     inputFormat: "n, potem n liczb.",
     outputFormat: "Liczby od konca, oddzielone spacjami.",
@@ -380,8 +921,6 @@ int main() {
         cin >> values[i];
     }
 
-    // wypisz od konca
-
     return 0;
 }
 `,
@@ -397,6 +936,306 @@ int main() {
     ],
   },
   {
+    id: "min-max-vector",
+    stageId: "structures",
+    title: "Minimum i maksimum",
+    difficulty: "Srednie",
+    xp: 90,
+    minutes: 22,
+    concepts: ["vector", "porownania", "petla"],
+    brief: "Znajdz skrajne wartosci w kolekcji.",
+    intro:
+      "Podobnie jak przy najwiekszej z trzech liczb, przy wektorze wybierasz pierwsza wartosc jako start i aktualizujesz wynik.",
+    task: "Wczytaj n i n liczb. Wypisz minimum i maksimum oddzielone spacja.",
+    inputFormat: "n, potem n liczb.",
+    outputFormat: "Dwie liczby: min max.",
+    starterCode: `#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> values(n);
+
+    for (int i = 0; i < n; i++) {
+        cin >> values[i];
+    }
+
+    int minimum = values[0];
+    int maximum = values[0];
+    cout << minimum << " " << maximum << endl;
+    return 0;
+}
+`,
+    hints: [
+      "Przejdz po wszystkich elementach.",
+      "Jesli values[i] < minimum, zaktualizuj minimum.",
+      "Jesli values[i] > maximum, zaktualizuj maximum.",
+    ],
+    tests: [
+      { name: "Rozne", input: "5\n7 2 9 4 1", expectedOutput: "1 9" },
+      { name: "Ujemne", input: "4\n-5 -1 -8 -3", expectedOutput: "-8 -1" },
+      { name: "Jeden", input: "1\n42", expectedOutput: "42 42", hidden: true },
+    ],
+  },
+  {
+    id: "count-above-average",
+    stageId: "structures",
+    title: "Powyzej sredniej",
+    difficulty: "Srednie",
+    xp: 100,
+    minutes: 26,
+    concepts: ["vector", "srednia", "licznik"],
+    brief: "Policz elementy wieksze od sredniej.",
+    intro:
+      "Niektore zadania wymagaja dwoch przejsc: najpierw liczysz wartosc pomocnicza, potem uzywasz jej do decyzji.",
+    task: "Wczytaj n i n liczb. Wypisz, ile z nich jest wiekszych od sredniej arytmetycznej wszystkich liczb.",
+    inputFormat: "n, potem n liczb calkowitych.",
+    outputFormat: "Jedna liczba calkowita.",
+    starterCode: `#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> values(n);
+
+    for (int i = 0; i < n; i++) {
+        cin >> values[i];
+    }
+
+    int count = 0;
+    cout << count << endl;
+    return 0;
+}
+`,
+    hints: [
+      "Najpierw policz sume.",
+      "Srednia jako double to sum / (double)n.",
+      "Potem policz elementy wieksze niz srednia.",
+    ],
+    tests: [
+      { name: "Dwa elementy", input: "5\n1 2 3 4 5", expectedOutput: "2" },
+      { name: "Wszystkie rowne", input: "4\n7 7 7 7", expectedOutput: "0" },
+      { name: "Ujemne", input: "3\n-3 -2 10", expectedOutput: "1", hidden: true },
+    ],
+  },
+  {
+    id: "linear-search",
+    stageId: "structures",
+    title: "Wyszukiwanie liniowe",
+    difficulty: "Srednie",
+    xp: 90,
+    minutes: 22,
+    concepts: ["vector", "flaga", "indeks"],
+    brief: "Znajdz pierwsze wystapienie wartosci.",
+    intro:
+      "Wyszukiwanie liniowe sprawdza elementy po kolei. Jest proste i dziala niezaleznie od kolejnosci danych.",
+    task: "Wczytaj n, n liczb oraz x. Wypisz indeks pierwszego wystapienia x albo -1, jesli x nie ma w wektorze.",
+    inputFormat: "n, n liczb, potem x.",
+    outputFormat: "Indeks liczony od 0 albo -1.",
+    starterCode: `#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> values(n);
+
+    for (int i = 0; i < n; i++) {
+        cin >> values[i];
+    }
+
+    int x;
+    cin >> x;
+
+    int index = -1;
+    cout << index << endl;
+    return 0;
+}
+`,
+    hints: [
+      "Przejdz po indeksach od 0 do n - 1.",
+      "Gdy znajdziesz values[i] == x, ustaw index i przerwij petle.",
+      "Jesli nic nie znajdziesz, index zostaje -1.",
+    ],
+    tests: [
+      { name: "Istnieje", input: "5\n4 8 2 8 9\n8", expectedOutput: "1" },
+      { name: "Brak", input: "3\n1 2 3\n7", expectedOutput: "-1" },
+      { name: "Pierwszy", input: "4\n5 1 5 2\n5", expectedOutput: "0", hidden: true },
+    ],
+  },
+  {
+    id: "unique-count",
+    stageId: "structures",
+    title: "Ile roznych liczb",
+    difficulty: "Srednie",
+    xp: 105,
+    minutes: 28,
+    concepts: ["vector", "set", "unikalne wartosci"],
+    brief: "Policz unikalne wartosci z wejscia.",
+    intro:
+      "Zbior set przechowuje kazda wartosc tylko raz. To wygodny sposob, gdy interesuje cie liczba roznych elementow.",
+    task: "Wczytaj n i n liczb calkowitych. Wypisz, ile roznych wartosci wystapilo.",
+    inputFormat: "n, potem n liczb.",
+    outputFormat: "Jedna liczba calkowita.",
+    starterCode: `#include <iostream>
+#include <set>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    set<int> uniqueValues;
+    for (int i = 0; i < n; i++) {
+        int value;
+        cin >> value;
+    }
+
+    cout << uniqueValues.size() << endl;
+    return 0;
+}
+`,
+    hints: [
+      "Do zbioru dodajesz element przez insert.",
+      "Duplikaty nie zwiekszaja rozmiaru set.",
+      "Na koncu size() daje liczbe roznych wartosci.",
+    ],
+    tests: [
+      { name: "Sa duplikaty", input: "6\n1 2 2 3 3 3", expectedOutput: "3" },
+      { name: "Wszystkie rozne", input: "4\n9 8 7 6", expectedOutput: "4" },
+      { name: "Jedna wartosc", input: "5\n4 4 4 4 4", expectedOutput: "1", hidden: true },
+    ],
+  },
+  {
+    id: "palindrome-string",
+    stageId: "structures",
+    title: "Palindrom",
+    difficulty: "Srednie",
+    xp: 105,
+    minutes: 28,
+    concepts: ["string", "indeksy", "bool"],
+    brief: "Sprawdz, czy slowo czyta sie tak samo od przodu i od tylu.",
+    intro:
+      "String zachowuje sie podobnie do tablicy znakow. Mozesz porownywac znak z poczatku ze znakiem z konca.",
+    task: "Wczytaj jedno slowo. Wypisz TAK, jesli jest palindromem, albo NIE w przeciwnym razie.",
+    inputFormat: "Jedno slowo bez spacji.",
+    outputFormat: "TAK albo NIE.",
+    starterCode: `#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string word;
+    cin >> word;
+
+    bool ok = true;
+    cout << (ok ? "TAK" : "NIE") << endl;
+    return 0;
+}
+`,
+    hints: [
+      "Porownuj word[i] z word[word.size() - 1 - i].",
+      "Wystarczy sprawdzic polowe slowa.",
+      "Jesli znajdziesz roznice, ustaw ok = false.",
+    ],
+    tests: [
+      { name: "Palindrom", input: "kajak", expectedOutput: "TAK" },
+      { name: "Nie palindrom", input: "program", expectedOutput: "NIE" },
+      { name: "Jedna litera", input: "a", expectedOutput: "TAK", hidden: true },
+    ],
+  },
+  {
+    id: "rotate-left",
+    stageId: "structures",
+    title: "Przesuniecie w lewo",
+    difficulty: "Srednie",
+    xp: 110,
+    minutes: 30,
+    concepts: ["vector", "indeksy", "modulo"],
+    brief: "Przesun elementy o jedno miejsce w lewo.",
+    intro:
+      "Przy operacjach na kolekcjach wazne jest pilnowanie indeksow. Ostatni element po przesunieciu moze trafic na koniec z poczatku.",
+    task: "Wczytaj n i n liczb. Wypisz ciag przesuniety o jedno miejsce w lewo, czyli pierwszy element trafia na koniec.",
+    inputFormat: "n, potem n liczb.",
+    outputFormat: "n liczb oddzielonych spacjami.",
+    starterCode: `#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> values(n);
+
+    for (int i = 0; i < n; i++) {
+        cin >> values[i];
+    }
+
+    return 0;
+}
+`,
+    hints: [
+      "Element o indeksie 1 powinien byc wypisany jako pierwszy.",
+      "Po values[n - 1] wypisz values[0].",
+      "Dla n = 1 wynik jest taki sam jak wejscie.",
+    ],
+    tests: [
+      { name: "Cztery", input: "4\n1 2 3 4", expectedOutput: "2 3 4 1" },
+      { name: "Jedna", input: "1\n9", expectedOutput: "9" },
+      { name: "Trzy", input: "3\n7 8 9", expectedOutput: "8 9 7", hidden: true },
+    ],
+  },
+  {
+    id: "prefix-sums",
+    stageId: "structures",
+    title: "Sumy prefiksowe",
+    difficulty: "Srednie",
+    xp: 120,
+    minutes: 32,
+    concepts: ["vector", "prefiksy", "long long"],
+    brief: "Dla kazdej pozycji wypisz sume elementow do tej pozycji.",
+    intro:
+      "Suma prefiksowa zapamietuje wynik narastajaco. To prosta technika, ktora pozniej przyspiesza wiele zapytan o przedzialy.",
+    task: "Wczytaj n i n liczb. Wypisz n liczb: i-ta liczba ma byc suma elementow od poczatku do i-tej pozycji.",
+    inputFormat: "n, potem n liczb.",
+    outputFormat: "n sum prefiksowych oddzielonych spacjami.",
+    starterCode: `#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> values(n);
+
+    for (int i = 0; i < n; i++) {
+        cin >> values[i];
+    }
+
+    long long running = 0;
+    for (int i = 0; i < n; i++) {
+    }
+
+    return 0;
+}
+`,
+    hints: [
+      "Przed wypisaniem dodaj aktualny element do running.",
+      "Wypisuj running po kazdym dodaniu.",
+      "Uzyj long long na sume.",
+    ],
+    tests: [
+      { name: "Rosnace", input: "4\n1 2 3 4", expectedOutput: "1 3 6 10" },
+      { name: "Z ujemna", input: "3\n5 -2 10", expectedOutput: "5 3 13" },
+      { name: "Jedna", input: "1\n8", expectedOutput: "8", hidden: true },
+    ],
+  },
+  {
     id: "gcd",
     stageId: "algorithms",
     title: "Najwiekszy wspolny dzielnik",
@@ -405,6 +1244,8 @@ int main() {
     minutes: 25,
     concepts: ["while", "algorytm Euklidesa", "funkcja"],
     brief: "Zaimplementuj klasyczny algorytm Euklidesa.",
+    intro:
+      "Dobry algorytm wykorzystuje strukture problemu. NWD mozna liczyc szybciej niz przez sprawdzanie wszystkich dzielnikow.",
     task: "Wczytaj dwie dodatnie liczby calkowite a i b. Wypisz ich najwiekszy wspolny dzielnik.",
     inputFormat: "Dwie dodatnie liczby calkowite.",
     outputFormat: "Jedna liczba calkowita.",
@@ -412,7 +1253,6 @@ int main() {
 using namespace std;
 
 int gcd(int a, int b) {
-    // algorytm Euklidesa
     return a;
 }
 
@@ -443,6 +1283,8 @@ int main() {
     minutes: 30,
     concepts: ["petla", "sqrt bez sqrt", "flaga"],
     brief: "Sprawdz dzielniki tylko tak dlugo, jak ma to sens.",
+    intro:
+      "Liczba zlozona ma dzielnik nie wiekszy niz jej pierwiastek. Dlatego nie trzeba testowac wszystkich kandydatow.",
     task: "Wczytaj liczbe n. Wypisz TAK, jesli n jest liczba pierwsza, albo NIE w przeciwnym razie.",
     inputFormat: "Jedna liczba calkowita.",
     outputFormat: "TAK albo NIE.",
@@ -450,7 +1292,6 @@ int main() {
 using namespace std;
 
 bool isPrime(int n) {
-    // uzupelnij
     return true;
 }
 
@@ -481,6 +1322,8 @@ int main() {
     minutes: 35,
     concepts: ["inwariant", "logarytm", "indeksy"],
     brief: "Znajdz element w posortowanej tablicy szybciej niz liniowo.",
+    intro:
+      "Wyszukiwanie binarne dzieli obszar poszukiwan na polowe. Dziala tylko wtedy, gdy dane sa uporzadkowane.",
     task: "Wczytaj n, posortowany rosnaco ciag n liczb oraz szukana wartosc x. Wypisz indeks x liczony od 0 albo -1, jesli x nie wystepuje.",
     inputFormat: "n, n liczb rosnaco, x.",
     outputFormat: "Indeks od 0 albo -1.",
@@ -492,7 +1335,8 @@ int binarySearch(const vector<int>& values, int x) {
     int left = 0;
     int right = (int)values.size() - 1;
 
-    // uzupelnij petle
+    while (left <= right) {
+    }
 
     return -1;
 }
@@ -523,14 +1367,304 @@ int main() {
     ],
   },
   {
+    id: "lcm",
+    stageId: "algorithms",
+    title: "Najmniejsza wspolna wielokrotnosc",
+    difficulty: "Srednie",
+    xp: 125,
+    minutes: 30,
+    concepts: ["NWD", "wzor", "long long"],
+    brief: "Polacz znany algorytm z prostym wzorem.",
+    intro:
+      "Czesto jeden algorytm jest klockiem do kolejnego. NWW mozna obliczyc z NWD, zamiast szukac wielokrotnosci petla.",
+    task: "Wczytaj dwie dodatnie liczby a i b. Wypisz ich najmniejsza wspolna wielokrotnosc.",
+    inputFormat: "Dwie dodatnie liczby calkowite.",
+    outputFormat: "Jedna liczba calkowita.",
+    starterCode: `#include <iostream>
+using namespace std;
+
+long long gcd(long long a, long long b) {
+    return a;
+}
+
+int main() {
+    long long a, b;
+    cin >> a >> b;
+
+    long long result = 0;
+    cout << result << endl;
+    return 0;
+}
+`,
+    hints: [
+      "Najpierw zaimplementuj gcd.",
+      "NWW mozna policzyc jako a / gcd(a, b) * b.",
+      "Dziel przed mnozeniem, aby zmniejszyc ryzyko przepelnienia.",
+    ],
+    tests: [
+      { name: "Typowe", input: "12 18", expectedOutput: "36" },
+      { name: "Wzglednie pierwsze", input: "7 9", expectedOutput: "63" },
+      { name: "Jedna dzieli druga", input: "6 24", expectedOutput: "24", hidden: true },
+    ],
+  },
+  {
+    id: "fibonacci",
+    stageId: "algorithms",
+    title: "Liczba Fibonacciego",
+    difficulty: "Srednie",
+    xp: 120,
+    minutes: 30,
+    concepts: ["iteracja", "ciag", "long long"],
+    brief: "Policz n-ty element ciagu bez rekurencji.",
+    intro:
+      "Iteracyjne liczenie ciagu przechowuje tylko kilka ostatnich wartosci. To zwykle prostsze i szybsze od rekurencji.",
+    task: "Wczytaj n. Przyjmij F(0)=0, F(1)=1. Wypisz F(n).",
+    inputFormat: "Jedna liczba calkowita n z zakresu 0-50.",
+    outputFormat: "Jedna liczba.",
+    starterCode: `#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    long long result = 0;
+    cout << result << endl;
+    return 0;
+}
+`,
+    hints: [
+      "Obsluz osobno n == 0 i n == 1 albo ustaw dwie zmienne poczatkowe.",
+      "W petli licz kolejna wartosc jako suma dwoch poprzednich.",
+      "Po kazdym kroku przesun poprzednie wartosci.",
+    ],
+    tests: [
+      { name: "Siodma", input: "7", expectedOutput: "13" },
+      { name: "Zero", input: "0", expectedOutput: "0" },
+      { name: "Dwudziesta", input: "20", expectedOutput: "6765", hidden: true },
+    ],
+  },
+  {
+    id: "sieve-count",
+    stageId: "algorithms",
+    title: "Liczby pierwsze do n",
+    difficulty: "Trudne",
+    xp: 150,
+    minutes: 40,
+    concepts: ["sito", "vector<bool>", "zlozonosc"],
+    brief: "Policz liczby pierwsze nie wieksze niz n.",
+    intro:
+      "Sito Eratostenesa wykresla wielokrotnosci liczb pierwszych. Dzieki temu nie testujesz kazdej liczby od zera.",
+    task: "Wczytaj n. Wypisz, ile liczb pierwszych jest w zakresie od 2 do n.",
+    inputFormat: "Jedna liczba calkowita n.",
+    outputFormat: "Jedna liczba calkowita.",
+    starterCode: `#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<bool> prime(n + 1, true);
+    int count = 0;
+    cout << count << endl;
+    return 0;
+}
+`,
+    hints: [
+      "Dla n < 2 wynik to 0.",
+      "Ustaw prime[0] i prime[1] na false.",
+      "Dla kazdego i pierwszego wykresl jego wielokrotnosci od i * i.",
+    ],
+    tests: [
+      { name: "Do 10", input: "10", expectedOutput: "4" },
+      { name: "Do 2", input: "2", expectedOutput: "1" },
+      { name: "Do 30", input: "30", expectedOutput: "10", hidden: true },
+    ],
+  },
+  {
+    id: "selection-sort",
+    stageId: "algorithms",
+    title: "Sortowanie przez wybor",
+    difficulty: "Trudne",
+    xp: 145,
+    minutes: 38,
+    concepts: ["sortowanie", "petle zagniezdzone", "swap"],
+    brief: "Zaimplementuj proste sortowanie od podstaw.",
+    intro:
+      "Zanim uzyjesz gotowego sort, warto raz zaimplementowac sortowanie recznie. To pomaga zrozumiec prace na indeksach.",
+    task: "Wczytaj n i n liczb. Posortuj je rosnaco metoda przez wybor i wypisz wynik.",
+    inputFormat: "n, potem n liczb.",
+    outputFormat: "n liczb rosnaco.",
+    starterCode: `#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> values(n);
+    for (int i = 0; i < n; i++) {
+        cin >> values[i];
+    }
+
+    for (int i = 0; i < n; i++) {
+    }
+
+    for (int value : values) {
+        cout << value << " ";
+    }
+    return 0;
+}
+`,
+    hints: [
+      "Dla kazdej pozycji i znajdz indeks najmniejszego elementu od i do konca.",
+      "Zamien values[i] z values[bestIndex].",
+      "Do zamiany mozesz uzyc swap.",
+    ],
+    tests: [
+      { name: "Losowe", input: "5\n4 1 5 2 3", expectedOutput: "1 2 3 4 5" },
+      { name: "Juz posortowane", input: "3\n1 2 3", expectedOutput: "1 2 3" },
+      { name: "Ujemne", input: "4\n0 -2 7 -5", expectedOutput: "-5 -2 0 7", hidden: true },
+    ],
+  },
+  {
+    id: "second-largest",
+    stageId: "algorithms",
+    title: "Druga najwieksza",
+    difficulty: "Srednie",
+    xp: 125,
+    minutes: 32,
+    concepts: ["jedno przejscie", "porownania", "wartosci skrajne"],
+    brief: "Znajdz druga najwieksza wartosc w jednym przejsciu.",
+    intro:
+      "Nie zawsze trzeba sortowac. Jesli potrzebujesz tylko dwoch najlepszych wartosci, mozesz trzymac dwoch kandydatow.",
+    task: "Wczytaj n i n roznych liczb. Wypisz druga najwieksza liczbe.",
+    inputFormat: "n >= 2, potem n roznych liczb.",
+    outputFormat: "Jedna liczba.",
+    starterCode: `#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> values(n);
+    for (int i = 0; i < n; i++) {
+        cin >> values[i];
+    }
+
+    int best = values[0];
+    int second = values[1];
+    cout << second << endl;
+    return 0;
+}
+`,
+    hints: [
+      "Na poczatku upewnij sie, ze best >= second.",
+      "Jesli nowa liczba jest wieksza od best, stary best staje sie second.",
+      "Jesli jest miedzy best i second, aktualizuj tylko second.",
+    ],
+    tests: [
+      { name: "Typowe", input: "5\n4 9 1 7 3", expectedOutput: "7" },
+      { name: "Dwie liczby", input: "2\n10 5", expectedOutput: "5" },
+      { name: "Ujemne", input: "4\n-8 -2 -5 -1", expectedOutput: "-2", hidden: true },
+    ],
+  },
+  {
+    id: "anagram-sort",
+    stageId: "algorithms",
+    title: "Anagramy",
+    difficulty: "Srednie",
+    xp: 130,
+    minutes: 34,
+    concepts: ["sort", "string", "porownanie"],
+    brief: "Sprawdz, czy dwa slowa maja te same litery.",
+    intro:
+      "Jesli posortujesz litery w obu slowach, anagramy dadza identyczny wynik. To prosty trik algorytmiczny.",
+    task: "Wczytaj dwa slowa. Wypisz TAK, jesli sa anagramami, albo NIE w przeciwnym razie.",
+    inputFormat: "Dwa slowa bez spacji.",
+    outputFormat: "TAK albo NIE.",
+    starterCode: `#include <algorithm>
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string a, b;
+    cin >> a >> b;
+
+    bool ok = false;
+    cout << (ok ? "TAK" : "NIE") << endl;
+    return 0;
+}
+`,
+    hints: [
+      "Posortuj oba napisy funkcja sort.",
+      "Porownaj posortowane wersje.",
+      "Jesli dlugosci sa rozne, porownanie i tak wyjdzie false.",
+    ],
+    tests: [
+      { name: "Anagram", input: "listen silent", expectedOutput: "TAK" },
+      { name: "Nie anagram", input: "kot pies", expectedOutput: "NIE" },
+      { name: "Powtorzenia", input: "aabb baba", expectedOutput: "TAK", hidden: true },
+    ],
+  },
+  {
+    id: "longest-increasing-streak",
+    stageId: "algorithms",
+    title: "Najdluzszy rosnacy fragment",
+    difficulty: "Trudne",
+    xp: 150,
+    minutes: 40,
+    concepts: ["jedno przejscie", "ciag", "maksimum"],
+    brief: "Znajdz dlugosc najdluzszego spojnego rosnacego fragmentu.",
+    intro:
+      "W zadaniach o fragmentach ciagu czesto wystarczy trzymac dlugosc aktualnego fragmentu i najlepszy wynik.",
+    task: "Wczytaj n i n liczb. Wypisz dlugosc najdluzszego spojnego fragmentu, w ktorym kazda kolejna liczba jest wieksza od poprzedniej.",
+    inputFormat: "n, potem n liczb.",
+    outputFormat: "Jedna liczba calkowita.",
+    starterCode: `#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> values(n);
+    for (int i = 0; i < n; i++) {
+        cin >> values[i];
+    }
+
+    int best = 1;
+    int current = 1;
+    cout << best << endl;
+    return 0;
+}
+`,
+    hints: [
+      "Porownuj values[i] z values[i - 1].",
+      "Jesli rosnie, zwieksz current.",
+      "Jesli nie rosnie, ustaw current z powrotem na 1.",
+    ],
+    tests: [
+      { name: "Fragment w srodku", input: "7\n1 2 5 3 4 6 1", expectedOutput: "3" },
+      { name: "Malejacy", input: "4\n9 7 5 3", expectedOutput: "1" },
+      { name: "Caly rosnacy", input: "5\n1 2 3 4 5", expectedOutput: "5", hidden: true },
+    ],
+  },
+  {
     id: "sort-products",
     stageId: "advanced",
     title: "Sortowanie wynikow",
     difficulty: "Trudne",
     xp: 150,
     minutes: 35,
-    concepts: ["sort", "pair", "komparator"],
+    concepts: ["sort", "struct", "komparator"],
     brief: "Uzyj biblioteki standardowej, zamiast pisac sortowanie recznie.",
+    intro:
+      "STL daje gotowe narzedzia, ale musisz umiec opisac, wedlug czego sortujesz. Komparator odpowiada na pytanie: co ma byc pierwsze.",
     task: "Wczytaj n oraz n par: nazwa produktu i cena. Wypisz nazwy produktow posortowane rosnaco po cenie. Przy remisie sortuj alfabetycznie po nazwie.",
     inputFormat: "n, potem n linii: nazwa cena.",
     outputFormat: "Nazwy w kolejnosci sortowania, po jednej w linii.",
@@ -553,8 +1687,6 @@ int main() {
     for (int i = 0; i < n; i++) {
         cin >> products[i].name >> products[i].price;
     }
-
-    // posortuj produkty
 
     for (const Product& product : products) {
         cout << product.name << endl;
@@ -583,6 +1715,8 @@ int main() {
     minutes: 40,
     concepts: ["map", "string", "zliczanie"],
     brief: "Zlicz wystapienia slow i wybierz najlepszy wynik.",
+    intro:
+      "Mapa laczy klucz z wartoscia. W tym zadaniu kluczem jest slowo, a wartoscia liczba jego wystapien.",
     task: "Wczytaj n oraz n slow. Wypisz slowo, ktore wystapilo najczesciej. Przy remisie wypisz alfabetycznie najmniejsze slowo.",
     inputFormat: "n, potem n slow.",
     outputFormat: "Jedno slowo.",
@@ -599,14 +1733,10 @@ int main() {
     for (int i = 0; i < n; i++) {
         string word;
         cin >> word;
-        // zwieksz licznik slowa
     }
 
     string bestWord;
     int bestCount = 0;
-
-    // znajdz najczestsze slowo
-
     cout << bestWord << endl;
     return 0;
 }
@@ -631,6 +1761,8 @@ int main() {
     minutes: 45,
     concepts: ["two pointers", "sort", "zlozonosc"],
     brief: "Znajdz pare liczb bez sprawdzania kazdej pary.",
+    intro:
+      "Dwa wskazniki po posortowanej tablicy pozwalaja przesuwac sie w kierunku dobrego wyniku bez testowania wszystkich par.",
     task: "Wczytaj n, n liczb oraz cel target. Wypisz TAK, jesli istnieja dwie rozne liczby z tablicy o sumie target, albo NIE w przeciwnym razie.",
     inputFormat: "n, n liczb, target.",
     outputFormat: "TAK albo NIE.",
@@ -652,9 +1784,6 @@ int main() {
     cin >> target;
 
     sort(values.begin(), values.end());
-
-    // uzyj dwoch wskaznikow
-
     cout << "NIE" << endl;
     return 0;
 }
@@ -671,6 +1800,329 @@ int main() {
     ],
   },
   {
+    id: "top-k-scores",
+    stageId: "advanced",
+    title: "Najlepsze wyniki",
+    difficulty: "Trudne",
+    xp: 155,
+    minutes: 36,
+    concepts: ["sort", "greater", "podzbior"],
+    brief: "Posortuj liczby malejaco i wypisz pierwsze k.",
+    intro:
+      "Gotowe sortowanie moze dzialac rosnaco albo malejaco. Czasem po sortowaniu potrzebujesz tylko poczatku wyniku.",
+    task: "Wczytaj n, k oraz n wynikow. Wypisz k najwiekszych wynikow malejaco.",
+    inputFormat: "n k, potem n liczb.",
+    outputFormat: "k liczb oddzielonych spacjami.",
+    starterCode: `#include <algorithm>
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n, k;
+    cin >> n >> k;
+    vector<int> scores(n);
+    for (int i = 0; i < n; i++) {
+        cin >> scores[i];
+    }
+
+    for (int i = 0; i < k; i++) {
+        cout << scores[i] << " ";
+    }
+    return 0;
+}
+`,
+    hints: [
+      "Posortuj scores malejaco.",
+      "Mozesz uzyc greater<int>().",
+      "Wypisz elementy o indeksach od 0 do k - 1.",
+    ],
+    tests: [
+      { name: "Trzy najlepsze", input: "5 3\n10 50 20 40 30", expectedOutput: "50 40 30" },
+      { name: "Jeden", input: "4 1\n7 9 2 8", expectedOutput: "9" },
+      { name: "Wszystkie", input: "3 3\n1 3 2", expectedOutput: "3 2 1", hidden: true },
+    ],
+  },
+  {
+    id: "set-difference",
+    stageId: "advanced",
+    title: "Roznica zbiorow",
+    difficulty: "Trudne",
+    xp: 155,
+    minutes: 38,
+    concepts: ["set", "find", "unikalne wartosci"],
+    brief: "Wypisz elementy obecne w pierwszym zbiorze, a nieobecne w drugim.",
+    intro:
+      "Set przechowuje wartosci w porzadku rosnacym. Dzieki temu wynik roznicy zbiorow moze byc wypisany uporzadkowany automatycznie.",
+    task: "Wczytaj rozmiary a i b, potem a liczb pierwszego zbioru i b liczb drugiego. Wypisz rosnaco liczby, ktore sa w pierwszym zbiorze, ale nie ma ich w drugim.",
+    inputFormat: "a b, potem a liczb, potem b liczb.",
+    outputFormat: "Liczby roznicy zbiorow oddzielone spacjami.",
+    starterCode: `#include <iostream>
+#include <set>
+using namespace std;
+
+int main() {
+    int a, b;
+    cin >> a >> b;
+
+    set<int> firstSet;
+    set<int> secondSet;
+
+    for (int i = 0; i < a; i++) {
+        int value;
+        cin >> value;
+    }
+
+    for (int i = 0; i < b; i++) {
+        int value;
+        cin >> value;
+    }
+
+    return 0;
+}
+`,
+    hints: [
+      "Wczytane wartosci dodawaj do odpowiednich setow.",
+      "Przejdz po firstSet.",
+      "Wypisz value, jesli secondSet.find(value) == secondSet.end().",
+    ],
+    tests: [
+      { name: "Czesc wspolna", input: "5 3\n1 2 3 4 5\n2 4 6", expectedOutput: "1 3 5" },
+      { name: "Pusto", input: "3 3\n1 2 3\n1 2 3", expectedOutput: "" },
+      { name: "Duplikaty", input: "5 2\n4 4 1 2 2\n2 9", expectedOutput: "1 4", hidden: true },
+    ],
+  },
+  {
+    id: "group-students",
+    stageId: "advanced",
+    title: "Zliczanie klas",
+    difficulty: "Srednie",
+    xp: 145,
+    minutes: 34,
+    concepts: ["map", "zliczanie", "porzadek kluczy"],
+    brief: "Zgrupuj wpisy wedlug nazwy klasy.",
+    intro:
+      "Map naturalnie grupuje dane po kluczu. Gdy przejdziesz po mapie, klucze pojawia sie w kolejnosci rosnacej.",
+    task: "Wczytaj n, a potem n nazw klas. Wypisz dla kazdej klasy jej nazwe i liczbe wystapien, alfabetycznie po nazwie.",
+    inputFormat: "n, potem n slow.",
+    outputFormat: "Linie w formacie: klasa liczba.",
+    starterCode: `#include <iostream>
+#include <map>
+#include <string>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    map<string, int> classes;
+    for (int i = 0; i < n; i++) {
+        string name;
+        cin >> name;
+    }
+
+    for (auto entry : classes) {
+        cout << entry.first << " " << entry.second << endl;
+    }
+    return 0;
+}
+`,
+    hints: [
+      "classes[name]++ zwieksza licznik klasy.",
+      "Nie musisz osobno sortowac mapy.",
+      "Wypisz entry.first i entry.second.",
+    ],
+    tests: [
+      { name: "Kilka klas", input: "5\n3a 2b 3a 1c 2b", expectedOutput: "1c 1\n2b 2\n3a 2" },
+      { name: "Jedna klasa", input: "3\n1a 1a 1a", expectedOutput: "1a 3" },
+      { name: "Alfabetycznie", input: "4\nb a c a", expectedOutput: "a 2\nb 1\nc 1", hidden: true },
+    ],
+  },
+  {
+    id: "stable-ranking",
+    stageId: "advanced",
+    title: "Ranking graczy",
+    difficulty: "Trudne",
+    xp: 170,
+    minutes: 42,
+    concepts: ["sort", "struct", "reguly remisu"],
+    brief: "Posortuj graczy po punktach i nazwie.",
+    intro:
+      "W rankingach czesto sortujesz po kilku kryteriach. Najpierw decyduje wynik, a dopiero przy remisie nazwa.",
+    task: "Wczytaj n oraz n par: nick punkty. Wypisz nicki posortowane malejaco po punktach, a przy remisie alfabetycznie.",
+    inputFormat: "n, potem n linii: nick punkty.",
+    outputFormat: "Nicki po jednym w linii.",
+    starterCode: `#include <algorithm>
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+struct Player {
+    string name;
+    int points;
+};
+
+int main() {
+    int n;
+    cin >> n;
+    vector<Player> players(n);
+
+    for (int i = 0; i < n; i++) {
+        cin >> players[i].name >> players[i].points;
+    }
+
+    for (const Player& player : players) {
+        cout << player.name << endl;
+    }
+    return 0;
+}
+`,
+    hints: [
+      "W komparatorze najpierw sprawdz, czy points sa rozne.",
+      "Wieksza liczba punktow ma byc pierwsza.",
+      "Przy remisie mniejszy name ma byc pierwszy.",
+    ],
+    tests: [
+      { name: "Ranking", input: "3\nala 10\nola 20\njan 15", expectedOutput: "ola\njan\nala" },
+      { name: "Remis", input: "3\nzen 5\nadam 5\newa 7", expectedOutput: "ewa\nadam\nzen" },
+      { name: "Wiecej", input: "4\nb 1\na 1\nd 3\nc 2", expectedOutput: "d\nc\na\nb", hidden: true },
+    ],
+  },
+  {
+    id: "bracket-balance",
+    stageId: "advanced",
+    title: "Poprawne nawiasy",
+    difficulty: "Trudne",
+    xp: 175,
+    minutes: 45,
+    concepts: ["stack", "string", "walidacja"],
+    brief: "Sprawdz, czy nawiasy sa poprawnie sparowane.",
+    intro:
+      "Stos dobrze pasuje do problemow, w ktorych ostatni otwarty element powinien zamknac sie jako pierwszy.",
+    task: "Wczytaj napis zlozony z nawiasow (), [] i {}. Wypisz TAK, jesli nawiasy sa poprawnie zbalansowane, albo NIE.",
+    inputFormat: "Jeden napis bez spacji.",
+    outputFormat: "TAK albo NIE.",
+    starterCode: `#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+
+int main() {
+    string text;
+    cin >> text;
+
+    stack<char> opened;
+    bool ok = true;
+    cout << (ok ? "TAK" : "NIE") << endl;
+    return 0;
+}
+`,
+    hints: [
+      "Nawias otwierajacy dodaj na stos.",
+      "Przy zamykajacym sprawdz, czy stos nie jest pusty i czy gora pasuje.",
+      "Na koncu stos musi byc pusty.",
+    ],
+    tests: [
+      { name: "Poprawne", input: "([]{})", expectedOutput: "TAK" },
+      { name: "Zla kolejnosc", input: "([)]", expectedOutput: "NIE" },
+      { name: "Niedomkniete", input: "((())", expectedOutput: "NIE", hidden: true },
+    ],
+  },
+  {
+    id: "median-after-sort",
+    stageId: "advanced",
+    title: "Mediana",
+    difficulty: "Srednie",
+    xp: 145,
+    minutes: 34,
+    concepts: ["sort", "indeks", "statystyka"],
+    brief: "Znajdz srodkowy element po posortowaniu.",
+    intro:
+      "Po sortowaniu wiele pytan o dane staje sie prostych. Dla nieparzystej liczby elementow mediana jest dokladnie w srodku.",
+    task: "Wczytaj nieparzyste n oraz n liczb. Wypisz mediane, czyli srodkowy element po posortowaniu rosnaco.",
+    inputFormat: "Nieparzyste n, potem n liczb.",
+    outputFormat: "Jedna liczba.",
+    starterCode: `#include <algorithm>
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> values(n);
+    for (int i = 0; i < n; i++) {
+        cin >> values[i];
+    }
+
+    int median = 0;
+    cout << median << endl;
+    return 0;
+}
+`,
+    hints: [
+      "Najpierw posortuj values.",
+      "Dla nieparzystego n srodkowy indeks to n / 2.",
+      "Wypisz values[n / 2].",
+    ],
+    tests: [
+      { name: "Piec", input: "5\n9 1 5 3 7", expectedOutput: "5" },
+      { name: "Jeden", input: "1\n42", expectedOutput: "42" },
+      { name: "Ujemne", input: "3\n-10 0 -5", expectedOutput: "-5", hidden: true },
+    ],
+  },
+  {
+    id: "range-frequency",
+    stageId: "advanced",
+    title: "Zapytania o liczby",
+    difficulty: "Trudne",
+    xp: 180,
+    minutes: 48,
+    concepts: ["map", "zapytania", "zliczanie"],
+    brief: "Odpowiadaj, ile razy pojawila sie dana liczba.",
+    intro:
+      "Gdy masz wiele zapytan, najpierw przygotuj strukture z odpowiedziami. Mapa pozwala potem odpowiadac szybko.",
+    task: "Wczytaj n i n liczb, potem q i q zapytan x. Dla kazdego x wypisz, ile razy x wystapilo w danych.",
+    inputFormat: "n, n liczb, q, potem q liczb x.",
+    outputFormat: "q linii z licznikami.",
+    starterCode: `#include <iostream>
+#include <map>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    map<int, int> counter;
+    for (int i = 0; i < n; i++) {
+        int value;
+        cin >> value;
+    }
+
+    int q;
+    cin >> q;
+    for (int i = 0; i < q; i++) {
+        int x;
+        cin >> x;
+        cout << 0 << endl;
+    }
+
+    return 0;
+}
+`,
+    hints: [
+      "Podczas wczytywania danych wykonaj counter[value]++.",
+      "Dla zapytania x odpowiedzia jest counter[x].",
+      "Brakujacy klucz w mapie da wartosc 0 po odczycie przez operator [].",
+    ],
+    tests: [
+      { name: "Kilka zapytan", input: "5\n1 2 2 3 2\n3\n2 3 9", expectedOutput: "3\n1\n0" },
+      { name: "Wszystko zero", input: "3\n5 5 6\n2\n1 2", expectedOutput: "0\n0" },
+      { name: "Jedno", input: "1\n7\n2\n7 8", expectedOutput: "1\n0", hidden: true },
+    ],
+  },
+  {
     id: "intervals",
     stageId: "independent",
     title: "Scalanie przedzialow",
@@ -679,6 +2131,8 @@ int main() {
     minutes: 55,
     concepts: ["sort", "vector", "przypadki brzegowe"],
     brief: "Polacz nachodzace na siebie przedzialy i wypisz uproszczona liste.",
+    intro:
+      "To zadanie laczy sortowanie, przechodzenie po danych i pilnowanie ostatniego wyniku. Najpierw uporzadkuj przedzialy, potem scalaj je po kolei.",
     task: "Wczytaj n oraz n przedzialow [l, r]. Scal przedzialy, ktore sie nachodza lub stykaja. Wypisz liczbe przedzialow po scaleniu, a potem kazdy przedzial w osobnej linii.",
     inputFormat: "n, potem n linii: l r.",
     outputFormat: "Liczba scalonych przedzialow, potem linie l r.",
@@ -699,8 +2153,6 @@ int main() {
     sort(intervals.begin(), intervals.end());
 
     vector<pair<int, int>> merged;
-    // scal przedzialy
-
     cout << merged.size() << endl;
     for (auto interval : merged) {
         cout << interval.first << " " << interval.second << endl;
@@ -729,6 +2181,8 @@ int main() {
     minutes: 60,
     concepts: ["sort", "greedy", "analiza wyniku"],
     brief: "Wybierz maksymalna liczbe niekolidujacych zadan.",
+    intro:
+      "Strategia zachlanna dziala wtedy, gdy lokalnie najlepszy wybor prowadzi do globalnie dobrego wyniku. Tu oplaca sie wybierac zadanie konczace sie najwczesniej.",
     task: "Wczytaj n oraz n zadan opisanych poczatkiem i koncem. Wypisz maksymalna liczbe zadan, ktore mozna wykonac bez nakladania sie. Zadanie konczace sie w chwili t nie koliduje z zadaniem zaczynajacym sie w chwili t.",
     inputFormat: "n, potem n linii: start koniec.",
     outputFormat: "Jedna liczba calkowita.",
@@ -752,9 +2206,6 @@ int main() {
 
     int result = 0;
     int currentTime = -1000000000;
-
-    // wybieraj zadania zachlannie
-
     cout << result << endl;
     return 0;
 }
@@ -779,6 +2230,8 @@ int main() {
     minutes: 75,
     concepts: ["map", "walidacja", "symulacja"],
     brief: "Przetworz operacje na kontach i odrzuc bledne transakcje.",
+    intro:
+      "Male projekty zwykle skladaja sie z kilku prostych zasad. Tutaj laczysz mape kont, przetwarzanie operacji i walidacje przelewu.",
     task: "Wczytaj liczbe operacji q. Operacja ADD name amount zwieksza saldo konta name. Operacja PAY from to amount przenosi amount, ale tylko jesli from ma wystarczajace saldo. Na koncu wypisz salda wszystkich kont alfabetycznie w formacie name saldo.",
     inputFormat: "q, potem q operacji.",
     outputFormat: "Konta alfabetycznie, po jednym w linii.",
@@ -801,12 +2254,10 @@ int main() {
             string name;
             long long amount;
             cin >> name >> amount;
-            // dodaj srodki
         } else if (operation == "PAY") {
             string from, to;
             long long amount;
             cin >> from >> to >> amount;
-            // wykonaj przelew tylko gdy to mozliwe
         }
     }
 

@@ -33,6 +33,7 @@ export interface Exercise {
   minutes: number;
   concepts: string[];
   brief: string;
+  intro: string;
   task: string;
   inputFormat: string;
   outputFormat: string;

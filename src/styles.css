@@ -421,6 +421,23 @@ button:disabled {
   background: #fff8e7;
 }
 
+.intro-box {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 14px;
+  padding: 12px;
+  border: 1px solid rgba(61, 124, 201, 0.22);
+  border-radius: 8px;
+  color: #204a79;
+  background: #eef6ff;
+}
+
+.intro-box p {
+  margin: 0;
+  color: #204a79;
+}
+
 .test-card {
   padding: 12px;
   border: 1px solid var(--line);
